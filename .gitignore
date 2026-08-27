@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+*.iml
+**/target/
+**/.env
+**/application-local.properties
+*.log
+backend/uploads/
+backend/startup-error.txt
+.codex-tmp/

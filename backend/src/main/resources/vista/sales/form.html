@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Punto de venta')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/layout :: sidebar}"></aside>
+    <main class="main-content pos-page">
+        <header class="page-header pos-header">
+            <div><span class="eyebrow">CAJA PRINCIPAL</span><h1>Punto de venta</h1><p>Selecciona productos y confirma la operacion desde el carrito.</p></div>
+            <a class="btn btn-outline-secondary" th:href="@{/ventas}"><i class="bi bi-clock-history"></i> Historial</a>
+        </header>
+        <form th:action="@{/ventas}" th:object="${saleForm}" method="post" data-pos-form>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div class="pos-layout">
+                <section class="pos-catalog">
+                    <div class="pos-toolbar">
+                        <div class="search-box"><i class="bi bi-search"></i><input type="search" class="form-control" placeholder="Buscar por nombre o codigo..." data-pos-search></div>
+                        <div class="category-pills" data-category-filter>
+                            <button type="button" class="category-pill active" data-category="all">Todos</button>
+                            <button type="button" class="category-pill" th:each="category : ${categories}" th:data-category="${category.id}" th:text="${category.name}"></button>
+                        </div>
+                    </div>
+                    <div class="product-grid" data-product-grid>
+                        <article class="pos-product-card" th:each="product : ${products}"
+                                 th:data-id="${product.id}" th:data-name="${product.name}" th:data-code="${product.code}"
+                                 th:data-category="${product.category.id}" th:data-price="${product.salePrice}"
+                                 th:data-stock="${product.stock}" th:classappend="${product.stock == 0} ? ' out-of-stock'">
+                            <div class="pos-product-image-wrap">
+                                <img class="pos-product-image" loading="lazy" th:alt="${product.name}"
+                                     th:src="${product.imageName != null} ? @{/media/productos/{name}(name=${product.imageName})} : @{/img/products/default.svg}">
+                                <span class="stock-chip" th:classappend="${product.lowStock} ? ' low'" th:text="${product.stock + ' disponibles'}"></span>
+                            </div>
+                            <div class="pos-product-info">
+                                <span class="product-code" th:text="${product.code}"></span><h2 th:text="${product.name}"></h2>
+                                <div class="pos-product-bottom"><strong th:text="${'S/ ' + #numbers.formatDecimal(product.salePrice, 1, 2)}"></strong>
+                                    <button type="button" class="add-product-button" data-add-product th:disabled="${product.stock == 0}" th:aria-label="${'Agregar ' + product.name}"><i class="bi bi-plus-lg"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="empty-state d-none" data-no-products><i class="bi bi-search"></i>No hay productos que coincidan.</div>
+                </section>
+                <aside class="pos-cart">
+                    <div class="pos-cart-heading"><div><span class="eyebrow">VENTA ACTUAL</span><h2>Mi carrito</h2></div><span class="cart-count" data-cart-count>0</span></div>
+                    <div class="customer-fields">
+                        <div><label class="form-label">Cliente</label><input class="form-control" th:field="*{customerName}" placeholder="Publico general"></div>
+                        <div><label class="form-label">DNI / RUC</label><input class="form-control" th:field="*{customerDocument}" inputmode="numeric"><div class="invalid-feedback" th:errors="*{customerDocument}"></div></div>
+                    </div>
+                    <div class="cart-items" data-cart-items><div class="cart-empty" data-cart-empty><i class="bi bi-basket2"></i><strong>El carrito esta vacio</strong><span>Agrega un producto del catalogo.</span></div></div>
+                    <div class="d-none" data-initial-items><span th:each="item : *{items}" th:if="${item.productId != null}" th:data-product-id="${item.productId}" th:data-quantity="${item.quantity}"></span></div>
+                    <div data-cart-fields></div>
+                    <div class="cart-summary"><div><span>Subtotal</span><strong data-cart-subtotal>S/ 0.00</strong></div><div class="cart-total"><span>Total</span><strong data-cart-total>S/ 0.00</strong></div></div>
+                    <button class="btn btn-primary btn-lg checkout-button" type="submit" data-checkout><i class="bi bi-check2-circle"></i> Confirmar venta</button>
+                    <p class="checkout-note"><i class="bi bi-shield-check"></i> El stock se descuenta al confirmar.</p>
+                </aside>
+            </div>
+        </form>
+    </main>
+</div>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

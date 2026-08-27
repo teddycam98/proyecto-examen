@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Resumen')}"></head>
+<body><div class="app-shell">
+<aside th:replace="~{fragments/layout :: sidebar}"></aside>
+<main class="main-content">
+    <div th:replace="~{fragments/layout :: alerts}"></div>
+    <header class="page-header">
+        <div><h1>Panel de control</h1><p>Estado general de Libreria Vico.</p></div>
+        <div class="d-flex gap-2"><a class="btn btn-outline-primary" th:href="@{/compras/nueva}"><i class="bi bi-box-arrow-in-down"></i> Nueva compra</a><a class="btn btn-primary" th:href="@{/ventas/nueva}"><i class="bi bi-plus-lg"></i> Nueva venta</a></div>
+    </header>
+
+    <section class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3"><div class="card metric-card"><div class="d-flex justify-content-between"><div><div class="metric-label">Productos activos</div><div class="metric-value" th:text="${summary.activeProducts}">0</div></div><div class="metric-icon"><i class="bi bi-journal-text"></i></div></div></div></div>
+        <div class="col-md-6 col-xl-3"><div class="card metric-card"><div class="d-flex justify-content-between"><div><div class="metric-label">Stock bajo</div><div class="metric-value" th:text="${summary.lowStockProducts}">0</div></div><div class="metric-icon"><i class="bi bi-exclamation-triangle"></i></div></div></div></div>
+        <div class="col-md-6 col-xl-3"><div class="card metric-card"><div class="d-flex justify-content-between"><div><div class="metric-label">Ventas de hoy</div><div class="metric-value" th:text="${summary.salesToday}">0</div></div><div class="metric-icon"><i class="bi bi-receipt"></i></div></div></div></div>
+        <div class="col-md-6 col-xl-3"><div class="card metric-card"><div class="d-flex justify-content-between"><div><div class="metric-label">Ingresos de hoy</div><div class="metric-value" th:text="${'S/ ' + #numbers.formatDecimal(summary.revenueToday, 1, 2)}">S/ 0.00</div></div><div class="metric-icon"><i class="bi bi-cash-stack"></i></div></div></div></div>
+    </section>
+
+    <section class="row g-4">
+        <div class="col-xl-7"><div class="card h-100"><div class="card-header d-flex justify-content-between align-items-center"><h2 class="card-title">Ventas recientes</h2><a th:href="@{/ventas}" class="small link-secondary">Ver todas</a></div><div class="table-responsive"><table class="table"><thead><tr><th>Numero</th><th>Cliente</th><th>Fecha</th><th>Total</th></tr></thead><tbody><tr th:each="sale : ${recentSales}"><td><a th:href="@{/ventas/{id}(id=${sale.id})}" th:text="${sale.saleNumber}"></a></td><td th:text="${sale.customerName}"></td><td th:text="${#temporals.format(sale.saleDate, 'dd/MM/yyyy HH:mm')}"></td><td class="money" th:text="${'S/ ' + #numbers.formatDecimal(sale.total, 1, 2)}"></td></tr><tr th:if="${#lists.isEmpty(recentSales)}"><td colspan="4" class="empty-state">Aun no hay ventas registradas.</td></tr></tbody></table></div></div></div>
+        <div class="col-xl-5"><div class="card h-100"><div class="card-header d-flex justify-content-between align-items-center"><h2 class="card-title">Productos por reponer</h2><a th:href="@{/productos}" class="small link-secondary">Inventario</a></div><div class="table-responsive"><table class="table"><thead><tr><th>Producto</th><th>Stock</th><th>Minimo</th></tr></thead><tbody><tr th:each="product : ${lowStockProducts}"><td><div th:text="${product.name}"></div><small class="product-code" th:text="${product.code}"></small></td><td><span class="badge badge-soft-danger" th:text="${product.stock}"></span></td><td th:text="${product.minimumStock}"></td></tr><tr th:if="${#lists.isEmpty(lowStockProducts)}"><td colspan="3" class="empty-state">Todo el inventario esta abastecido.</td></tr></tbody></table></div></div></div>
+    </section>
+</main></div><th:block th:replace="~{fragments/layout :: scripts}"></th:block></body></html>
