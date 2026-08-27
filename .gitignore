@@ -1,10 +1,22 @@
+# IDE / OS
 .vscode/
 .idea/
 *.iml
+.DS_Store
+
+# Maven Build Directories
+target/
+backend/target/
 **/target/
+
+# Local Environment & Secrets
+.env
 **/.env
 **/application-local.properties
 *.log
 backend/uploads/
 backend/startup-error.txt
+
+# Temporary Scratch Files
+scratch/
 .codex-tmp/
