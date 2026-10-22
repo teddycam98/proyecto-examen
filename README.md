@@ -5,7 +5,7 @@
 
 ---
 
-## 🎯 ¿Qué es este proyecto? (Resumen para la Explicación al Docente)
+## 🎯 ¿Qué es este proyecto? 
 
 **Librería Vico** es una aplicación web integral desarrollada para automatizar y optimizar la administración de una librería y papelería comercial. Resuelve los problemas típicos del registro manual: descuadres de caja, falta de control en el stock, pérdidas por productos agotados y lentitud al atender.
 
