@@ -19,6 +19,9 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 
     List<Sale> findTop20ByOrderBySaleDateDesc();
 
+    @Query("select s from Sale s where s.saleDate >= :start and s.saleDate < :end order by s.saleDate, s.id")
+    List<Sale> findForReport(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+
     long countBySaleDateBetweenAndStatus(LocalDateTime start, LocalDateTime end, TransactionStatus status);
 
     @Query("select coalesce(sum(s.total), 0) from Sale s where s.saleDate between :start and :end and s.status = :status")

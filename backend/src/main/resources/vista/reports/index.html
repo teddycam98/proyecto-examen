@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Reportes')}"></head>
+<body><div class="app-shell">
+    <aside th:replace="~{fragments/layout :: sidebar}"></aside>
+    <main class="main-content">
+        <header class="page-header"><div><h1>Reportes</h1><p>Descarga información de tu negocio en PDF, lista para compartir o imprimir.</p></div></header>
+        <div class="row g-4">
+            <section class="col-lg-6"><div class="card h-100"><div class="card-body p-4">
+                <i class="bi bi-box-seam fs-2 text-primary" aria-hidden="true"></i>
+                <h2 class="h4 mt-3">Inventario valorizado</h2>
+                <p class="text-muted">Productos activos, existencias, stock mínimo, alertas de reposición y valor de inventario a precio de compra.</p>
+                <p class="small text-muted">Refleja las existencias actuales. Los importes se expresan en soles.</p>
+                <a class="btn btn-primary" th:href="@{/reportes/inventario.pdf}"><i class="bi bi-file-earmark-pdf"></i> Descargar inventario</a>
+            </div></div></section>
+            <section class="col-lg-6"><div class="card h-100"><div class="card-body p-4">
+                <i class="bi bi-receipt fs-2 text-primary" aria-hidden="true"></i>
+                <h2 class="h4 mt-3">Ventas por período</h2>
+                <p class="text-muted">Comprobantes, clientes y estados. El total considera únicamente las ventas completadas.</p>
+                <form method="get" th:action="@{/reportes/ventas.pdf}">
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6"><label class="form-label" for="desde">Desde</label><input id="desde" name="desde" type="date" class="form-control" th:value="${from}" required></div>
+                        <div class="col-sm-6"><label class="form-label" for="hasta">Hasta</label><input id="hasta" name="hasta" type="date" class="form-control" th:value="${to}" required></div>
+                    </div>
+                    <button class="btn btn-primary"><i class="bi bi-file-earmark-pdf"></i> Descargar ventas</button>
+                </form>
+            </div></div></section>
+        </div>
+    </main>
+</div><th:block th:replace="~{fragments/layout :: scripts}"></th:block></body>
+</html>
