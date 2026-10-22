@@ -1,96 +1,127 @@
-# Librería Vico - Sistema de Inventario y Ventas
+# 📚 Librería Vico - Sistema Web de Inventario y Ventas
 
-Sistema web Spring Boot + Thymeleaf desarrollado para el control de útiles escolares y artículos de escritorio de Librería Vico.
+> **Sistema de Gestión Comercial y Control de Inventarios**  
+> 🌐 **Demostración en Vivo en la Nube:** [https://proyecto-examen.onrender.com/](https://proyecto-examen.onrender.com/)
 
 ---
 
-## 📁 Estructura General del Proyecto
+## 🎯 ¿Qué es este proyecto? (Resumen para la Explicación al Docente)
+
+**Librería Vico** es una aplicación web integral desarrollada para automatizar y optimizar la administración de una librería y papelería comercial. Resuelve los problemas típicos del registro manual: descuadres de caja, falta de control en el stock, pérdidas por productos agotados y lentitud al atender.
+
+### Puntos clave para sustentar:
+1. **Control de Stock en Tiempo Real:** Cada venta descuenta automáticamente la cantidad vendida del inventario, impidiendo ventas de productos sin stock disponible.
+2. **Alertas de Stock Mínimo:** El sistema calcula y resalta visualmente los productos próximos a agotarse para anticipar compras de reposición.
+3. **Flujo de Compras y Proveedores:** Permite abastecer el inventario, asociar compras a proveedores formales y registrar costos unitarios.
+4. **Reportes Profesionales en PDF:** Generación instantánea de reportes de inventario valorizado y reportes de ventas listos para imprimir mediante **JasperReports**.
+
+---
+
+## 🌐 Enlace del Sistema en Vivo (Despliegue Cloud)
+
+* **Enlace Público:** [https://proyecto-examen.onrender.com/](https://proyecto-examen.onrender.com/)
+* **Alojamiento Web:** Render.com (Contenedor Docker con Java 21)
+* **Base de Datos en la Nube:** TiDB Cloud Serverless (MySQL 8)
+* **Seguridad:** Conexión cifrada HTTPS / SSL
+
+> **Nota:** Al estar alojado en el plan gratuito en la nube, si el sistema pasa más de 15 minutos sin recibir visitas entra en reposo automático. Al abrir el enlace, solo demorará unos 30 segundos en reactivarse.
+
+---
+
+## 🛠️ Tecnologías Utilizadas (Explicadas en sencillo)
+
+| Componente | Tecnología | ¿Por qué se utilizó? |
+| :--- | :--- | :--- |
+| **Lenguaje Principal** | **Java 21 (LTS)** | Versión moderna de soporte extendido, garantiza alto rendimiento y estabilidad. |
+| **Framework Backend** | **Spring Boot** | Estándar en la industria para crear aplicaciones empresariales robustas y configurables. |
+| **Arquitectura** | **MVC (Modelo - Vista - Controlador)** | Separa la presentación, las reglas de negocio y el acceso a datos para un código limpio. |
+| **Base de Datos** | **MySQL 8** (TiDB Cloud) | Base de datos relacional con soporte transaccional ACID y motor InnoDB. |
+| **Persistencia / ORM** | **Spring Data JPA / Hibernate** | Facilita las consultas a base de datos mediante entidades Java, evitando SQL manual repetitivo. |
+| **Control de Versiones BD** | **Flyway** | Ejecuta scripts de migración automáticos para crear tablas y sembrar productos iniciales. |
+| **Motor de Vistas** | **Thymeleaf + HTML5 / CSS3 / Bootstrap** | Renderiza vistas del lado del servidor de forma dinámica, rápida y adaptable a móviles. |
+| **Módulo de Reportes** | **JasperReports 7** | Motor para diseñar y renderizar reportes ejecutivos en formato PDF. |
+| **Contenedor y Cloud** | **Docker + Render** | Permite empaquetar la aplicación con su entorno exacto y levantarla 24/7 en internet. |
+
+---
+
+## 🧩 Módulos del Sistema
+
+* **📊 Panel de Control (`/`):** Métricas del valor total del inventario en Soles (S/), total facturado del día, número de productos activos y alertas de reposición.
+* **📦 Catálogo de Productos (`/productos`):** Listado de útiles escolares y de oficina peruanos (cuadernos Stanford, plumones y colores Faber-Castell, cartulinas Vinifan, etc.) con sus fotos, categorías, precios de costo, precios de venta y stock actual.
+* **🧾 Módulo de Ventas (`/ventas`):** Emisión de comprobantes (Boletas y Facturas), control del cliente, detalle de ítems y validación estricta de stock disponible.
+* **📥 Módulo de Compras (`/compras`):** Registro de ingreso de mercadería desde proveedores con actualización automática de existencias.
+* **🔄 Movimientos de Kardex (`/inventario/movimientos`):** Trazabilidad completa de entradas, salidas y ajustes manuales por merma o auditoría.
+* **📄 Reportes Ejecutivos (`/reportes`):**
+  - **Inventario Valorizado (PDF):** Reporte formal con existencias, costos unitarios, valorización total e indicadores de reposición.
+  - **Ventas por Rango de Fechas (PDF):** Reporte de ingresos, detalle por cliente y estado de comprobantes.
+
+---
+
+## 🏛️ Arquitectura del Software (Flujo de Datos)
+
+El sistema implementa una arquitectura por capas estricta:
 
 ```text
-proyecto-examen/
-├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/proyectoexamen/backend/
-│   │   │   │       ├── controller/        # Recibe peticiones web y encamina a la vista
-│   │   │   │       ├── dto/               # Transporte y validación de datos de formularios
-│   │   │   │       ├── entity/            # Entidades Java mapeadas a tablas de MySQL
-│   │   │   │       ├── exception/         # Manejo centralizado de errores de negocio
-│   │   │   │       ├── repository/        # Acceso a datos heredando JpaRepository (DAO)
-│   │   │   │       ├── service/           # Lógica de negocio e inventarios
-│   │   │   │       └── BackendApplication.java
-│   │   │   └── resources/
-│   │   │       ├── db/
-│   │   │       │   └── migration/         # Migraciones Flyway (V1 a V5)
-│   │   │       ├── static/                # Recursos estáticos web
-│   │   │       │   ├── css/
-│   │   │       │   ├── js/
-│   │   │       │   └── img/
-│   │   │       ├── vista/                 # Vistas HTML motorizadas por Thymeleaf
-│   │   │       │   ├── categories/
-│   │   │       │   ├── fragments/
-│   │   │       │   ├── products/
-│   │   │       │   ├── purchases/
-│   │   │       │   ├── sales/
-│   │   │       │   ├── stock/
-│   │   │       │   ├── suppliers/
-│   │   │       │   ├── dashboard.html
-│   │   │       │   └── error.html
-│   │   │       └── application.properties
-│   │   └── test/                          # Pruebas unitarias e integración
-│   ├── pom.xml
-│   ├── mvnw
-│   └── mvnw.cmd
-├── database/                              # Scripts SQL para MySQL
-├── docs/                                  # Documentación del proyecto
-├── .gitignore
-└── README.md
+[ Navegador Web del Usuario ]
+               │
+               ▼
+   1. Capa Controlador (Controller)
+      Valida los parámetros de la solicitud HTTP y define la vista a mostrar.
+               │
+               ▼
+   2. Capa de Servicio (Service / ServiceImpl)
+      Aplica las reglas del negocio (validar stock antes de vender, calcular totales).
+               │
+               ▼
+   3. Capa de Datos (Repository / DAO)
+      Hereda de JpaRepository para realizar operaciones seguras en base de datos.
+               │
+               ▼
+   4. Capa de Entidad (Entity)
+      Clases Java mapeadas directamente a las tablas relacionales.
+               │
+               ▼
+      [ Base de Datos MySQL ]
 ```
 
-### 📌 Notas Importantes sobre la Arquitectura:
-- **`backend/`**: Contiene la aplicación Spring Boot monolítica.
-- **`src/main/java`**: Contiene el código fuente Java dividido en capas (`controller`, `service`, `repository`, `entity`, `dto`, `exception`).
-- **`controller`**: Recibe las solicitudes web (URLs) y responde enviando el modelo a la vista.
-- **`service`**: Contiene las reglas de negocio, control transaccional e inventarios.
-- **`repository`**: Capa DAO de acceso a datos que extiende `JpaRepository`.
-- **`entity`**: Representa las tablas de la base de datos MySQL como clases Java.
-- **`src/main/resources/vista`**: Contiene las plantillas de Vistas HTML5 de Thymeleaf.
-- **`src/main/resources/static`**: Contiene los recursos estáticos (CSS, JavaScript e imágenes).
-- **`database/`**: Contiene los scripts de creación e importación para MySQL (`00_create_database.sql`).
-- **`docs/`**: Contiene la documentación técnica y arquitectónica.
-- **`target/`**: Carpeta generada automáticamente por Maven al compilar. **No se versiona en Git** (está ignorada en `.gitignore`).
-- **No existe un frontend separado**: La interfaz se renderiza en el servidor mediante Thymeleaf integrado en Spring Boot.
+> **Argumento para el docente:** Los controladores **nunca** acceden directamente a la base de datos; todas las operaciones pasan por servicios transaccionales con anotaciones `@Transactional`, protegiendo la consistencia de los datos ante posibles fallos o ventas concurrentes.
 
 ---
 
-## 🏛️ Arquitectura Spring Web MVC (Escuela Superior La Pontificia)
+## 💻 Instrucciones para Ejecutar en Local
 
-| Pilar MVC | Capa Arquitectónica | Estereotipo Spring | Ubicación en el Código | Responsabilidad |
-| :--- | :--- | :--- | :--- | :--- |
-| **Vista (V)** | Vista HTML | `HTML / Thymeleaf` | `backend/src/main/resources/vista/` | Interfaz gráfica visible por el usuario (`.html`). |
-| **Controlador (C)** | Web Controller | `@Controller` | `com.proyectoexamen.backend.controller` | Recibe las peticiones web (URLs) y responde a la Vista. |
-| **Controlador (C)** | Lógica de Negocio | `@Service` | `com.proyectoexamen.backend.service.impl` | Procesa las reglas de negocio y transacciones. |
-| **Modelo (M)** | Acceso a Datos (DAO) | `@Repository` | `com.proyectoexamen.backend.repository` | Consulta la base de datos heredando `JpaRepository`. |
-| **Modelo (M)** | Entidad Persistente | `@Entity` | `com.proyectoexamen.backend.entity` | Clase Java mapeada directamente a una tabla SQL. |
+Si el docente o evaluador solicita probar el proyecto en una computadora local:
 
----
+### 1. Prerrequisitos
+* Tener instalado **Java 21** o superior.
+* Tener instalado y activo un servidor **MySQL 8**.
 
-## ⚙️ Inicio Local
+### 2. Configurar la base de datos
+En el archivo `backend/src/main/resources/application.properties`, verificar las credenciales de conexión:
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/libreria_vico?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
+spring.datasource.username=root
+spring.datasource.password=root
+```
 
-1. Cree la base de datos ejecutando `database/00_create_database.sql` en su servidor MySQL (o deje que Flyway la cree automáticamente al arrancar).
-2. Configure las credenciales en `backend/src/main/resources/application.properties` (ej. `DB_USERNAME` y `DB_PASSWORD`).
-3. Desde la carpeta `backend`, ejecute:
-   ```powershell
-   .\mvnw.cmd spring-boot:run
-   ```
-4. Abra su navegador e ingrese a **`http://localhost:8080`**.
-
----
-
-## 🧪 Pruebas Automatizadas
-
-Para ejecutar la suite de pruebas unitarias y de integración:
+### 3. Ejecutar el proyecto
+Abrir una terminal en la carpeta `backend`:
 ```powershell
-.\mvnw.cmd clean test
+# En Windows:
+.\mvnw.cmd spring-boot:run
+
+# En Linux / macOS:
+./mvnw spring-boot:run
 ```
+
+### 4. Acceder al sistema
+Abrir en el navegador:
+👉 `http://localhost:8080`
+
+*(Flyway se encargará de crear automáticamente la base de datos `libreria_vico`, todas las tablas y los 18 productos peruanos iniciales).*
+
+---
+
+## 👤 Información del Proyecto
+* **Autor:** Teddy Camasca
+* **Repositorio Oficial:** [https://github.com/teddycam98/proyecto-examen](https://github.com/teddycam98/proyecto-examen)
