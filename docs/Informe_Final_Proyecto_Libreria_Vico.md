@@ -10,7 +10,11 @@
 * **Carrera Profesional:** Desarrollo de Software y Sistemas
 * **Módulo / Especialidad:** Desarrollo Web Integrado & Programación Empresarial en Java
 * **Nombre del Sistema:** Librería Vico – Inventory & Point of Sale Management System
-* **Autor / Estudiante:** Teddy Camasca de la Cruz
+* **Equipo de Estudiantes / Desarrolladores:**
+  - CAMASCA DE LA CRUZ, TEDY
+  - QUISPE CENTENO, JHAN CARLOS
+  - SANTIAGO ATAUCUSI, JULIO FRANCISCO
+  - QUIROGA QUISPE, MARLON JOEL
 * **Repositorio de Código Fuente:** [https://github.com/teddycam98/proyecto-examen](https://github.com/teddycam98/proyecto-examen)
 * **Demostración en Vivo en la Nube (Producción):** [https://proyecto-examen.onrender.com/](https://proyecto-examen.onrender.com/)
 * **Periodo Académico:** 2026

@@ -8,7 +8,7 @@
 
         @page {
             size: A4;
-            margin: 20mm 18mm 20mm 18mm;
+            margin: 18mm 16mm 18mm 16mm;
             @bottom-right {
                 content: counter(page);
                 font-family: 'Inter', sans-serif;
@@ -25,8 +25,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 10pt;
-            line-height: 1.6;
+            font-size: 9.5pt;
+            line-height: 1.55;
             color: #1e293b;
             background: #ffffff;
         }
@@ -38,7 +38,7 @@
             flex-direction: column;
             justify-content: space-between;
             page-break-after: always;
-            padding: 15mm 0;
+            padding: 10mm 0;
             border-top: 6px solid #0f766e;
             border-bottom: 3px solid #0f2b48;
         }
@@ -52,13 +52,13 @@
             background: #f0fdf4;
             color: #0f766e;
             font-weight: 700;
-            font-size: 9pt;
-            padding: 6px 16px;
+            font-size: 8.5pt;
+            padding: 5px 14px;
             border-radius: 20px;
             border: 1px solid #bbf7d0;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .institution-title {
@@ -70,36 +70,36 @@
         }
 
         .career-title {
-            font-size: 11pt;
+            font-size: 10.5pt;
             color: #64748b;
             font-weight: 500;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .cover-main {
             text-align: center;
-            margin: 25mm 0;
+            margin: 15mm 0;
         }
 
         .doc-type {
-            font-size: 10pt;
+            font-size: 9.5pt;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #0f766e;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .project-title {
-            font-size: 24pt;
+            font-size: 22pt;
             font-weight: 800;
             color: #0f2b48;
             line-height: 1.25;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .project-subtitle {
-            font-size: 13pt;
+            font-size: 12pt;
             color: #475569;
             font-weight: 500;
             max-width: 85%;
@@ -107,35 +107,35 @@
         }
 
         .cover-chips {
-            margin-top: 20px;
+            margin-top: 15px;
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .chip {
             background: #f1f5f9;
             color: #334155;
-            font-size: 8pt;
+            font-size: 7.5pt;
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 3px 8px;
+            border-radius: 5px;
             border: 1px solid #e2e8f0;
         }
 
         .cover-footer {
             background: #f8fafc;
-            border-radius: 12px;
-            padding: 16px 20px;
+            border-radius: 10px;
+            padding: 14px 18px;
             border: 1px solid #e2e8f0;
         }
 
         .meta-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px 20px;
-            font-size: 9pt;
+            gap: 10px 18px;
+            font-size: 8.5pt;
         }
 
         .meta-item strong {
@@ -144,7 +144,7 @@
             font-size: 7.5pt;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .meta-item span, .meta-item a {
@@ -155,6 +155,16 @@
 
         .meta-item a {
             color: #0f766e;
+            font-weight: 600;
+        }
+
+        .team-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px 12px;
+            font-size: 8.5pt;
+            color: #1e293b;
             font-weight: 600;
         }
 
@@ -170,11 +180,11 @@
         }
 
         h1 {
-            font-size: 16pt;
+            font-size: 15pt;
             border-bottom: 2px solid #0f766e;
-            padding-bottom: 6px;
-            margin-top: 24px;
-            margin-bottom: 14px;
+            padding-bottom: 5px;
+            margin-top: 22px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -183,27 +193,27 @@
         h1 .num {
             background: #0f2b48;
             color: #ffffff;
-            font-size: 10pt;
-            padding: 2px 8px;
+            font-size: 9.5pt;
+            padding: 2px 7px;
             border-radius: 4px;
         }
 
         h2 {
-            font-size: 12.5pt;
-            margin-top: 18px;
-            margin-bottom: 10px;
+            font-size: 11.5pt;
+            margin-top: 16px;
+            margin-bottom: 8px;
             color: #134e4a;
         }
 
         h3 {
-            font-size: 10.5pt;
-            margin-top: 14px;
-            margin-bottom: 6px;
+            font-size: 10pt;
+            margin-top: 12px;
+            margin-bottom: 5px;
             color: #0f2b48;
         }
 
         p {
-            margin-bottom: 10px;
+            margin-bottom: 9px;
             text-align: justify;
         }
 
@@ -211,27 +221,22 @@
         .callout {
             background: #f0fdf4;
             border-left: 4px solid #0f766e;
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 14px 0;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
             break-inside: avoid;
-        }
-
-        .callout.info {
-            background: #eff6ff;
-            border-left-color: #2563eb;
         }
 
         .callout-title {
             font-weight: 700;
             color: #0f2b48;
-            font-size: 9.5pt;
-            margin-bottom: 4px;
+            font-size: 9pt;
+            margin-bottom: 3px;
         }
 
         .callout p {
             margin-bottom: 0;
-            font-size: 9pt;
+            font-size: 8.5pt;
             color: #334155;
         }
 
@@ -239,8 +244,8 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 14px 0;
-            font-size: 8.5pt;
+            margin: 12px 0;
+            font-size: 8pt;
             break-inside: avoid;
         }
 
@@ -251,13 +256,13 @@
         }
 
         table th {
-            padding: 8px 10px;
+            padding: 7px 9px;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
 
         table td {
-            padding: 7px 10px;
+            padding: 6px 9px;
             border-bottom: 1px solid #e2e8f0;
             color: #334155;
             vertical-align: top;
@@ -267,18 +272,14 @@
             background: #f8fafc;
         }
 
-        table tbody tr:hover {
-            background: #f1f5f9;
-        }
-
         .tech-badge {
             display: inline-block;
             background: #e0f2fe;
             color: #0369a1;
             font-weight: 700;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 4px;
-            font-size: 8pt;
+            font-size: 7.5pt;
         }
 
         /* --- DIAGRAMAS Y CAJAS ARQUITECTÓNICAS --- */
@@ -286,20 +287,19 @@
             background: #f8fafc;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            padding: 14px;
-            margin: 16px 0;
+            padding: 12px;
+            margin: 14px 0;
             break-inside: avoid;
         }
 
         .flow-step {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background: #ffffff;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 6px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
         }
 
         .flow-step:last-child {
@@ -310,33 +310,59 @@
             background: #0f766e;
             color: #ffffff;
             font-weight: 700;
-            font-size: 8pt;
-            padding: 3px 8px;
+            font-size: 7.5pt;
+            padding: 2px 7px;
             border-radius: 4px;
-            min-width: 90px;
+            min-width: 85px;
             text-align: center;
-            margin-right: 12px;
+            margin-right: 10px;
             margin-top: 2px;
         }
 
         .flow-content strong {
             color: #0f2b48;
-            font-size: 9pt;
+            font-size: 8.5pt;
             display: block;
         }
 
         .flow-content p {
-            font-size: 8.5pt;
+            font-size: 8pt;
             color: #64748b;
             margin-bottom: 0;
+        }
+
+        /* --- CAPTURAS DE PANTALLA --- */
+        .screenshot-container {
+            margin: 12px 0 16px 0;
+            text-align: center;
+            break-inside: avoid;
+        }
+
+        .screenshot-img {
+            width: 100%;
+            max-height: 82mm;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            display: block;
+        }
+
+        .screenshot-caption {
+            font-size: 7.5pt;
+            color: #64748b;
+            font-style: italic;
+            margin-top: 4px;
+            display: block;
         }
 
         /* --- MÓDULOS EN GRID --- */
         .modules-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 14px 0;
+            gap: 10px;
+            margin: 12px 0;
             break-inside: avoid;
         }
 
@@ -344,16 +370,15 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-top: 3px solid #0f766e;
-            border-radius: 8px;
-            padding: 12px 14px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            border-radius: 6px;
+            padding: 10px 12px;
             break-inside: avoid;
         }
 
         .module-card h4 {
-            font-size: 9.5pt;
+            font-size: 9pt;
             color: #0f2b48;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -361,37 +386,37 @@
 
         .module-route {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 7.5pt;
+            font-size: 7pt;
             color: #0f766e;
             background: #f0fdf4;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 4px;
             border: 1px solid #bbf7d0;
         }
 
         .module-card p {
-            font-size: 8.5pt;
+            font-size: 8pt;
             color: #475569;
             margin-bottom: 0;
         }
 
         ul, ol {
-            margin-left: 20px;
-            margin-bottom: 10px;
-            font-size: 9pt;
+            margin-left: 18px;
+            margin-bottom: 8px;
+            font-size: 8.5pt;
         }
 
         li {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .footer-note {
             text-align: center;
-            font-size: 8pt;
+            font-size: 7.5pt;
             color: #94a3b8;
-            margin-top: 25px;
+            margin-top: 20px;
             border-top: 1px solid #e2e8f0;
-            padding-top: 8px;
+            padding-top: 6px;
         }
     </style>
 </head>
@@ -407,7 +432,7 @@
 
         <div class="cover-main">
             <div class="doc-type">Informe Técnico Profesional de Proyecto Final</div>
-            <h1 class="project-title" style="border: none; margin: 0 0 15px 0;">SISTEMA WEB DE GESTIÓN COMERCIAL, INVENTARIOS Y FACTURACIÓN</h1>
+            <h1 class="project-title" style="border: none; margin: 0 0 10px 0;">SISTEMA WEB DE GESTIÓN COMERCIAL, INVENTARIOS Y FACTURACIÓN</h1>
             <div class="project-subtitle">"Librería Vico" – Solución Integral en la Nube con Java 21, Spring Boot y MySQL</div>
             <div class="cover-chips">
                 <span class="chip">Java 21 LTS</span>
@@ -422,20 +447,25 @@
 
         <div class="cover-footer">
             <div class="meta-grid">
-                <div class="meta-item">
-                    <strong>Estudiante / Desarrollador:</strong>
-                    <span>Teddy Camasca de la Cruz</span>
+                <div class="meta-item" style="grid-column: 1 / -1;">
+                    <strong>Equipo de Estudiantes / Desarrolladores:</strong>
+                    <ul class="team-list">
+                        <li>• CAMASCA DE LA CRUZ, TEDY</li>
+                        <li>• QUISPE CENTENO, JHAN CARLOS</li>
+                        <li>• SANTIAGO ATAUCUSI, JULIO FRANCISCO</li>
+                        <li>• QUIROGA QUISPE, MARLON JOEL</li>
+                    </ul>
                 </div>
                 <div class="meta-item">
                     <strong>Periodo Académico:</strong>
                     <span>2026 – Ayacucho, Perú</span>
                 </div>
                 <div class="meta-item">
-                    <strong>Demostración en Vivo (Producción):</strong>
+                    <strong>Demostración en Vivo (Producción Cloud):</strong>
                     <a href="https://proyecto-examen.onrender.com/" target="_blank">https://proyecto-examen.onrender.com/</a>
                 </div>
-                <div class="meta-item">
-                    <strong>Repositorio GitHub:</strong>
+                <div class="meta-item" style="grid-column: 1 / -1;">
+                    <strong>Repositorio Oficial de Código Fuente:</strong>
                     <a href="https://github.com/teddycam98/proyecto-examen" target="_blank">github.com/teddycam98/proyecto-examen</a>
                 </div>
             </div>
@@ -589,36 +619,56 @@
 
     <!-- ==================== CAPÍTULO 4 ==================== -->
     <div class="page-break"></div>
-    <h1><span class="num">4</span> Funcionamiento y Módulos del Sistema</h1>
+    <h1><span class="num">4</span> Funcionamiento del Sistema y Evidencias Visuales</h1>
     <p>
-        La solución digital está organizada en 6 módulos operativos independientes y totalmente sincronizados:
+        A continuación se documenta el comportamiento de cada módulo del sistema en su entorno real en producción, adjuntando las capturas de pantalla de la aplicación:
     </p>
 
-    <div class="modules-grid">
-        <div class="module-card">
-            <h4>Panel de Control <span class="module-route">/</span></h4>
-            <p>Muestra el resumen ejecutivo del día: valor total del inventario valorizado en Soles (S/), total de ingresos por ventas y listado en rojo de productos en stock crítico.</p>
-        </div>
-        <div class="module-card">
-            <h4>Catálogo de Productos <span class="module-route">/productos</span></h4>
-            <p>Listado dinámico con buscador de útiles escolares, costos de compra, precios de venta, categoría, fotos de productos y control de estado (activo/inactivo).</p>
-        </div>
-        <div class="module-card">
-            <h4>Punto de Venta (POS) <span class="module-route">/ventas/nueva</span></h4>
-            <p>Pantalla de atención rápida con botones de adición directa, carrito reactivo con cálculo automático de totales e impedimento de venta si no hay stock físico.</p>
-        </div>
-        <div class="module-card">
-            <h4>Compras y Proveedores <span class="module-route">/compras</span></h4>
-            <p>Registro de órdenes de abastecimiento con proveedores formales (con RUC). Actualiza automáticamente el stock y registra el costo de adquisición.</p>
-        </div>
-        <div class="module-card">
-            <h4>Kardex de Movimientos <span class="module-route">/inventario/movimientos</span></h4>
-            <p>Trazabilidad histórica inmutable de cada entrada, salida, venta o ajuste manual con fotografía de existencias: anterior, variada y resultante.</p>
-        </div>
-        <div class="module-card">
-            <h4>Reportes Ejecutivos PDF <span class="module-route">/reportes</span></h4>
-            <p>Generación y descarga con un clic de documentos en PDF oficiales con JasperReports: Inventario Valorizado completo y Reporte de Ventas por Período.</p>
-        </div>
+    <h2>4.1. Panel de Control (Dashboard Ejecutivo)</h2>
+    <p>
+        El panel de control permite monitorear las métricas financieras clave al instante: valor total del inventario valorizado en Soles (S/), total facturado en el día y advertencias visuales de stock bajo.
+    </p>
+    <div class="screenshot-container">
+        <img class="screenshot-img" src="screenshots/dashboard.png" alt="Dashboard Librería Vico">
+        <span class="screenshot-caption">Figura 1: Panel de Control principal con resumen financiero en tiempo real.</span>
+    </div>
+
+    <h2>4.2. Módulo de Punto de Venta (POS) y Carrito Reactivo</h2>
+    <p>
+        La interfaz de venta permite seleccionar artículos por categoría con botones táctiles <code>+</code> y <code>−</code>, calcular subtotales y bloquear la venta si no existe stock disponible.
+    </p>
+    <div class="screenshot-container">
+        <img class="screenshot-img" src="screenshots/pos.png" alt="Punto de Venta POS">
+        <span class="screenshot-caption">Figura 2: Punto de Venta interactivo con catálogo de útiles y carrito de compras.</span>
+    </div>
+
+    <div class="page-break"></div>
+    <h2>4.3. Catálogo de Productos y Existencias</h2>
+    <p>
+        Administra las 18 familias de productos escolares y de oficina peruanos, asegurando que el precio de venta nunca sea inferior al costo de adquisición.
+    </p>
+    <div class="screenshot-container">
+        <img class="screenshot-img" src="screenshots/productos.png" alt="Catálogo de Productos">
+        <span class="screenshot-caption">Figura 3: Catálogo con control de stock, código SKU, precios e imágenes de producto.</span>
+    </div>
+
+    <h2>4.4. Historial de Ventas y Comprobantes Emitidos</h2>
+    <p>
+        Muestra la relación de transacciones generadas con su código correlativo único (ej. <code>V-20261022150856-760B</code>), fecha, cliente y opción de anulación con restitución al Kardex.
+    </p>
+    <div class="screenshot-container">
+        <img class="screenshot-img" src="screenshots/ventas.png" alt="Historial de Ventas">
+        <span class="screenshot-caption">Figura 4: Historial de ventas confirmadas en tiempo real en la base de datos TiDB.</span>
+    </div>
+
+    <div class="page-break"></div>
+    <h2>4.5. Módulo de Reportes Oficiales en PDF (JasperReports)</h2>
+    <p>
+        Subsistema que procesa los datos y compila en memoria informes ejecutivos de Inventario Valorizado y Ventas por Rango de Fechas en formato PDF.
+    </p>
+    <div class="screenshot-container">
+        <img class="screenshot-img" src="screenshots/reportes.png" alt="Módulo de Reportes PDF">
+        <span class="screenshot-caption">Figura 5: Módulo de generación y descarga directa de reportes ejecutivos en PDF.</span>
     </div>
 
     <!-- ==================== CAPÍTULO 5 ==================== -->
@@ -680,7 +730,7 @@
     </ol>
 
     <div class="footer-note">
-        Sistema Web Librería Vico – Desarrollado por Teddy Camasca de la Cruz | Carrera de Desarrollo de Software y Sistemas (2026)
+        Sistema Web Librería Vico – Desarrollado por: Camasca Tedy, Quispe Jhan Carlos, Santiago Julio Francisco y Quiroga Marlon Joel | EES La Pontificia (2026)
     </div>
 
 </body>
