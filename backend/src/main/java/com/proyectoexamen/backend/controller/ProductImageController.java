@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.core.io.Resource;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +22,8 @@ public class ProductImageController {
     @GetMapping("/{filename:.+}")
     public ResponseEntity<Resource> show(@PathVariable String filename) throws IOException {
         Resource image = imageService.load(filename);
-        String contentType = image.getURL().openConnection().getContentType();
-        MediaType mediaType = contentType == null ? MediaType.APPLICATION_OCTET_STREAM : MediaType.parseMediaType(contentType);
+        MediaType mediaType = MediaTypeFactory.getMediaType(image)
+                .orElse(MediaType.APPLICATION_OCTET_STREAM);
         return ResponseEntity.ok().cacheControl(CacheControl.noCache()).contentType(mediaType).body(image);
     }
 }

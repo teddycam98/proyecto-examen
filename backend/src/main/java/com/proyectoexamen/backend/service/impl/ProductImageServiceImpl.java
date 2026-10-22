@@ -71,6 +71,8 @@ public class ProductImageServiceImpl implements ProductImageService {
         }
         Resource demo = new ClassPathResource("static/img/products/" + safeName);
         if (demo.exists() && demo.isReadable()) return demo;
+        Resource fallback = new ClassPathResource("static/img/products/default.svg");
+        if (fallback.exists() && fallback.isReadable()) return fallback;
         throw new BusinessException("Imagen no encontrada");
     }
 }
