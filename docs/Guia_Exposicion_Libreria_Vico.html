@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía Maestra de Exposición - Librería Vico</title>
+    <style>
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #1e293b;
+            margin: 20mm 20mm 20mm 20mm;
+        }
+
+        /* --- TÍTULOS Y ENCABEZADOS --- */
+        h1 {
+            color: #0f2b48;
+            font-size: 20pt;
+            font-weight: bold;
+            border-bottom: 2.5pt solid #0f766e;
+            padding-bottom: 4pt;
+            margin-top: 18pt;
+            margin-bottom: 12pt;
+        }
+
+        h2 {
+            color: #0f766e;
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 14pt;
+            margin-bottom: 8pt;
+            border-bottom: 1pt solid #cbd5e1;
+            padding-bottom: 2pt;
+        }
+
+        h3 {
+            color: #1e293b;
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 10pt;
+            margin-bottom: 4pt;
+        }
+
+        p {
+            margin-bottom: 8pt;
+            text-align: justify;
+        }
+
+        /* --- PORTADA ELEGANTE --- */
+        .cover-box {
+            border: 2pt solid #0f766e;
+            background-color: #f8fafc;
+            padding: 18pt;
+            text-align: center;
+            margin-bottom: 24pt;
+        }
+
+        .cover-inst {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #0f766e;
+            text-transform: uppercase;
+            letter-spacing: 1.5pt;
+        }
+
+        .cover-career {
+            font-size: 10pt;
+            color: #64748b;
+            margin-top: 2pt;
+            margin-bottom: 14pt;
+        }
+
+        .cover-main-title {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #0f2b48;
+            margin-bottom: 6pt;
+        }
+
+        .cover-sub-title {
+            font-size: 13pt;
+            color: #334155;
+            font-weight: normal;
+            margin-bottom: 16pt;
+        }
+
+        .cover-team {
+            background-color: #ffffff;
+            border: 1pt solid #e2e8f0;
+            padding: 10pt;
+            margin-top: 12pt;
+            text-align: left;
+        }
+
+        .cover-team strong {
+            color: #0f2b48;
+            font-size: 10pt;
+            display: block;
+            margin-bottom: 4pt;
+            text-transform: uppercase;
+        }
+
+        .cover-team ul {
+            margin: 0;
+            padding-left: 15pt;
+            font-size: 9.5pt;
+        }
+
+        /* --- CAJAS DESTACADAS (CALLOUTS) --- */
+        .speech-box {
+            background-color: #f0fdf4;
+            border-left: 4pt solid #0f766e;
+            padding: 8pt 12pt;
+            margin: 10pt 0;
+        }
+
+        .speech-box strong {
+            color: #065f46;
+            display: block;
+            margin-bottom: 3pt;
+            font-size: 10pt;
+        }
+
+        .speech-box p {
+            margin: 0;
+            font-style: italic;
+            color: #1f2937;
+            font-size: 10pt;
+        }
+
+        .tip-box {
+            background-color: #eff6ff;
+            border-left: 4pt solid #2563eb;
+            padding: 8pt 12pt;
+            margin: 10pt 0;
+        }
+
+        .tip-box strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 3pt;
+            font-size: 10pt;
+        }
+
+        .tip-box p {
+            margin: 0;
+            color: #1e293b;
+            font-size: 9.5pt;
+        }
+
+        .danger-box {
+            background-color: #fef2f2;
+            border-left: 4pt solid #ef4444;
+            padding: 8pt 12pt;
+            margin: 10pt 0;
+        }
+
+        .danger-box strong {
+            color: #991b1b;
+            display: block;
+            margin-bottom: 3pt;
+            font-size: 10pt;
+        }
+
+        .danger-box p {
+            margin: 0;
+            color: #1e293b;
+            font-size: 9.5pt;
+        }
+
+        /* --- TABLAS --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10pt 0;
+            font-size: 9.5pt;
+        }
+
+        table th {
+            background-color: #0f2b48;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: left;
+            padding: 6pt 8pt;
+            border: 1pt solid #0f2b48;
+        }
+
+        table td {
+            padding: 5pt 8pt;
+            border: 1pt solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* --- PASOS NUMERADOS --- */
+        .step-container {
+            margin: 8pt 0;
+            padding: 8pt;
+            background-color: #f8fafc;
+            border: 1pt solid #e2e8f0;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #0f2b48;
+            font-size: 10.5pt;
+            margin-bottom: 3pt;
+        }
+
+        .code-snippet {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #1e293b;
+            color: #38bdf8;
+            padding: 4pt 8pt;
+            font-size: 9pt;
+            display: block;
+            margin: 4pt 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== PORTADA ==================== -->
+    <div class="cover-box">
+        <div class="cover-inst">Escuela de Educación Superior La Pontificia</div>
+        <div class="cover-career">Carrera Profesional de Desarrollo de Software y Sistemas • Periodo 2026</div>
+        <div class="cover-main-title">GUÍA MAESTRA DE SUSTENTACIÓN</div>
+        <div class="cover-sub-title">Manual Integral de Exposición, Arquitectura de Software y Anatomía de Ejecución de Código</div>
+        <div style="font-size: 10pt; color: #0f766e; font-weight: bold;">
+            PROYECTO: Sistema Web de Gestión Comercial, Control de Inventarios y Facturación – "Librería Vico"
+        </div>
+
+        <div class="cover-team">
+            <strong>Equipo de Exposición / Desarrolladores:</strong>
+            <ul>
+                <li><strong>CAMASCA DE LA CRUZ, TEDY</strong> (Líder del Proyecto & Cloud / DevOps)</li>
+                <li><strong>QUISPE CENTENO, JHAN CARLOS</strong> (Desarrollador Backend & Base de Datos)</li>
+                <li><strong>SANTIAGO ATAUCUSI, JULIO FRANCISCO</strong> (Lógica de Negocio & Módulo POS)</li>
+                <li><strong>QUIROGA QUISPE, MARLON JOEL</strong> (Diseño UI/UX & JasperReports)</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 10pt; font-size: 9pt; color: #475569;">
+            🌐 <strong>Enlace en Producción:</strong> https://proyecto-examen.onrender.com/<br>
+            📂 <strong>Repositorio GitHub:</strong> https://github.com/teddycam98/proyecto-examen
+        </div>
+    </div>
+
+    <!-- ==================== SECCIÓN 1 ==================== -->
+    <h1>SECCIÓN 1: GUION PASO A PASO DIAPOSITIVA POR DIAPOSITIVA</h1>
+    <p>
+        Esta sección contiene las palabras exactas, el enfoque técnico y la estrategia que deben decir en cada una de las <strong>7 diapositivas</strong> de la presentación.
+    </p>
+
+    <h2>Diapositiva 1: Portada e Introducción del Proyecto</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Causar una primera impresión de alto nivel, demostrar seguridad y presentar al equipo con roles definidos.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Buenos días profesor y compañeros. El día de hoy nuestro equipo conformado por Tedy Camasca, Jhan Carlos Quispe, Julio Francisco Santiago y Marlon Joel Quiroga, tenemos el agrado de presentar nuestro proyecto final titulado: <strong>Sistema Web de Gestión Comercial, Control de Inventarios y Facturación para Librería Vico</strong>.
+            Este software fue concebido como una solución empresarial moderna desarrollada con Java 21, Spring Boot y MySQL, completamente empaquetada bajo Docker y desplegada 24/7 en la nube con protocolo seguro HTTPS. A continuación, les mostraremos el problema real que encontramos en el negocio y la arquitectura que construimos para resolverlo."
+        </p>
+    </div>
+
+    <h2>Diapositiva 2: El Diagnóstico Comercial (El Problema vs. La Solución)</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Demostrar que el software no es un simple ejercicio de código, sino una herramienta que resuelve pérdidas económicas reales.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Profesor, al analizar la operatividad de Librería Vico identificamos que llevaban su administración con registros manuales en cuadernos. Esto generaba cuatro graves problemas: primero, <strong>quiebres de stock imprevistos</strong>, donde el cliente pedía cuadernos o colores que ya no había en estantería; segundo, <strong>lentitud en mostrador</strong>, demorando entre 3 a 5 minutos por cliente calculando con libreta; tercero, <strong>errores de cobro</strong>; y cuarto, una <strong>ausencia total de Kardex</strong>, desconociendo si faltaba mercadería por mermas o robos.
+            Nuestra solución web transforma radicalmente esto: descuenta el stock en tiempo real en menos de 1 segundo, valida que nunca se venda con stock en cero, agiliza el cobro en el POS a menos de 30 segundos y audita cada movimiento de inventario con reportes contables oficiales."
+        </p>
+    </div>
+
+    <h2>Diapositiva 3: Stack Tecnológico Empresarial</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Sustentar con criterio técnico por qué se eligió cada herramienta.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Para la construcción del sistema no usamos herramientas improvisadas, sino el estándar de la industria empresarial:
+            Como lenguaje principal usamos <strong>Java 21 LTS</strong>, aprovechando su robustez y tipado estricto.
+            En el backend utilizamos <strong>Spring Boot 4</strong>, implementando el patrón MVC e Inversión de Control.
+            Para los datos usamos <strong>Spring Data JPA con Hibernate</strong> conectado a <strong>TiDB Cloud Serverless</strong>, una base de datos distribuida 100% compatible con MySQL 8 y transacciones ACID.
+            Para las vistas implementamos <strong>Thymeleaf y Bootstrap 5</strong>, logrando una interfaz limpia y adaptable a celulares.
+            Y en reportería integramos <strong>JasperReports 7</strong> para generar PDFs formales con inventario valorizado y ventas.
+            Todo el proyecto está contenerizado con <strong>Docker</strong> y desplegado en <strong>Render</strong> a costo cero."
+        </p>
+    </div>
+
+    <h2>Diapositiva 4: Arquitectura del Software (Patrón MVC)</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Demostrar que el código es profesional, limpio y desacoplado.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Profesor, la arquitectura del sistema sigue estrictamente el patrón <strong>Modelo-Vista-Controlador (MVC)</strong> organizado en capas desacopladas:
+            La <strong>Vista</strong> captura la interacción del usuario en el navegador; el <strong>Controlador</strong> recibe la petición HTTP y valida los datos; la capa de <strong>Servicio</strong> aplica las reglas de negocio y garantiza la atomicidad con <code>@Transactional</code>; y la capa de <strong>Repositorio</strong> consulta la base de datos mediante JPA.
+            Destacamos tres pilares técnicos: primero, <strong>concurrencia optimista</strong> con <code>@Version</code> en la entidad Producto para evitar que dos cajeros vendan la última unidad al mismo tiempo; segundo, transaccionalidad total con rollback ante fallos; y tercero, manejo global de errores con <code>@ControllerAdvice</code>."
+        </p>
+    </div>
+
+    <h2>Diapositiva 5: Demostración del Punto de Venta (POS) y Catálogo</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Resaltar la usabilidad de cara al usuario final.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "En esta pantalla observamos el <strong>Punto de Venta</strong> operando en tiempo real. Diseñamos un carrito reactivo en JavaScript puro que permite agregar artículos con un solo clic, ajustar cantidades y calcular subtotales al instante en Soles.
+            El sistema ya cuenta con 18 familias de productos del mercado peruano precargadas (Stanford, Faber-Castell, Artesco, Vinifan). Un aspecto fundamental es que si un producto se queda con 0 existencias, el botón se bloquea de inmediato, imposibilitando ventas erróneas."
+        </p>
+    </div>
+
+    <h2>Diapositiva 6: Control Financiero (Dashboard y JasperReports en PDF)</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Demostrar la capacidad analítica y contable del sistema.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Aquí mostramos el <strong>Panel de Control Ejecutivo</strong>. El dueño del negocio puede ver en tiempo real el capital total invertido en almacén expresado en Soles a costo de compra, el total de ventas del día y un semáforo de alertas rojas para productos en stock mínimo.
+            Asimismo, integramos <strong>JasperReports</strong>: con un solo clic el administrador descarga el informe de Inventario Valorizado o el Reporte de Ventas por período en formato PDF, debidamente paginado, con encabezados corporativos y totales calculados."
+        </p>
+    </div>
+
+    <h2>Diapositiva 7: Conclusiones y Demostración en Vivo</h2>
+    <div class="tip-box">
+        <strong>Objetivo de la diapositiva:</strong> Cerrar con contundencia y pasar al navegador para mostrar el sistema funcionando en la nube.
+    </div>
+    <div class="speech-box">
+        <strong>Lo que debes decir:</strong>
+        <p>
+            "Para concluir: logramos un sistema 100% funcional y desplegado en producción cloud con alta disponibilidad; aseguramos integridad transaccional absoluta sin descuadres de stock; y dejamos una arquitectura escalable lista para incorporar facturación electrónica SUNAT.
+            Profesor, lo invitamos a ver el sistema en vivo en nuestro enlace de producción: <code>https://proyecto-examen.onrender.com/</code>. Procederemos a realizar una venta de prueba y descargar un reporte PDF."
+        </p>
+    </div>
+
+    <!-- ==================== SECCIÓN 2 ==================== -->
+    <h1>SECCIÓN 2: ¿DE QUÉ SIRVE Y CÓMO AYUDA A MEJORAR EL SISTEMA?</h1>
+    <p>
+        Si el docente les pregunta: <em>"¿Cuál es el beneficio real de este proyecto frente a seguir usando Excel o un cuaderno?"</em>, esta es la fundamentación que deben exponer:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Problema en la Librería</th>
+                <th style="width: 35%;">Consecuencia Negativa Real</th>
+                <th style="width: 40%;">Cómo lo Resuelve Nuestro Sistema</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Venta de artículos agotados</strong></td>
+                <td>Pérdida de clientes, quejas y mala reputación en mostrador.</td>
+                <td><strong>Validación en tiempo real:</strong> El POS consulta las existencias antes de confirmar y descuenta el stock en la misma transacción. Si el stock llega a 0, se bloquea la adición.</td>
+            </tr>
+            <tr>
+                <td><strong>Lentitud al cobrar</strong></td>
+                <td>Filas de espera de 10 a 15 minutos en temporada escolar de alta demanda.</td>
+                <td><strong>Punto de Venta reactivo:</strong> Selección con botones táctiles `+` y `−`, cálculo automático de precios y confirmación en menos de 30 segundos.</td>
+            </tr>
+            <tr>
+                <td><strong>Descuadres de caja y precios erróneos</strong></td>
+                <td>Diferencias de dinero al final de la jornada; márgenes de ganancia reducidos.</td>
+                <td><strong>Cálculo matemático exacto:</strong> Los precios están centralizados en la base de datos con validación para que el precio de venta nunca sea inferior al precio de compra.</td>
+            </tr>
+            <tr>
+                <td><strong>Pérdida de mercadería sin justificación</strong></td>
+                <td>Robos hormiga o mermas que el dueño asume como pérdidas misteriosas.</td>
+                <td><strong>Kardex inmutable (`stock_movements`):</strong> Cada variación registra fecha, hora, tipo de movimiento (`VENTA`, `COMPRA`, `AJUSTE`), stock anterior y stock final.</td>
+            </tr>
+            <tr>
+                <td><strong>Falta de información patrimonial</strong></td>
+                <td>Incapacidad de sustentar estados financieros ante bancos o SUNAT.</td>
+                <td><strong>JasperReports PDF:</strong> Emisión de reportes ejecutivos consolidados listos para imprimir con el valor total del inventario al centavo.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== SECCIÓN 3 ==================== -->
+    <h1>SECCIÓN 3: LA ARQUITECTURA MVC EXPLICADA EN SENCILLO</h1>
+    <p>
+        El patrón <strong>Modelo - Vista - Controlador (MVC)</strong> es un patrón de diseño arquitectónico que divide el código en tres responsabilidades fundamentales para que el proyecto sea mantenible, ordenado y escalable.
+    </p>
+
+    <div class="step-container">
+        <div class="step-title">1. LA VISTA (Frontend / Interfaz de Usuario)</div>
+        <p>
+            <strong>¿Qué es?</strong> Es lo que el usuario ve en la pantalla de su computadora o celular (páginas HTML, estilos CSS y comportamiento visual con JavaScript).<br>
+            <strong>¿Dónde está en el código?</strong> En las carpetas <code>backend/src/main/resources/vista/</code> y <code>static/</code>.<br>
+            <strong>¿Qué hace?</strong> Muestra los botones, el catálogo con fotos, el carrito de compras y las tablas de datos usando <strong>Thymeleaf</strong> y <strong>Bootstrap</strong>.<br>
+            <strong>Regla de oro:</strong> La vista <em>NUNCA</em> debe contener lógica de negocio pesada ni conectarse a la base de datos; solo muestra información y envía peticiones al Controlador.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">2. EL CONTROLADOR (Spring MVC / Controller)</div>
+        <p>
+            <strong>¿Qué es?</strong> Es el "recepcionista" o "policía de tráfico" del sistema. Es la puerta de entrada a la que llegan las peticiones HTTP que envía el navegador.<br>
+            <strong>¿Dónde está en el código?</strong> En el paquete <code>com.proyectoexamen.backend.controller</code> (ej. <code>SaleController.java</code>, <code>ProductController.java</code>).<br>
+            <strong>¿Qué hace?</strong> Recibe los datos que envió el usuario, verifica que los formularios cumplan las validaciones básicas (ej. que el DNI tenga 8 dígitos con <code>@Valid</code>), llama al Servicio correspondiente y decide qué vista devolver al usuario.<br>
+            <strong>Regla de oro:</strong> El controlador <em>NUNCA</em> interactúa con la base de datos directamente; su único trabajo es recibir la solicitud, llamar al servicio y encaminar la respuesta.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">3. EL SERVICIO (Lógica de Negocio / Service & ServiceImpl)</div>
+        <p>
+            <strong>¿Qué es?</strong> Es el "cerebro" y el corazón comercial del sistema. Aquí residen todas las reglas del negocio de la librería.<br>
+            <strong>¿Dónde está en el código?</strong> En los paquetes <code>service</code> y <code>service.impl</code> (ej. <code>SaleServiceImpl.java</code>, <code>ProductServiceImpl.java</code>).<br>
+            <strong>¿Qué hace?</strong> Aplica las condiciones del mundo real: ¿Hay suficiente stock para vender? ¿El precio de venta es mayor que el costo? ¿El cliente ingresó un comprobante válido? Si todo es correcto, calcula subtotales, descuenta existencias y genera el Kardex.<br>
+            <strong>Regla de oro:</strong> Aquí se coloca la anotación <code>@Transactional</code>. Si una venta tiene 5 productos y el quinto falla, la transacción revierte todo (*Rollback*) para no dejar el inventario descuadrado.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">4. EL REPOSITORIO (Capa de Acceso a Datos / DAO)</div>
+        <p>
+            <strong>¿Qué es?</strong> Es el "puente" de comunicación entre el código Java y la base de datos MySQL.<br>
+            <strong>¿Dónde está en el código?</strong> En el paquete <code>com.proyectoexamen.backend.repository</code> (ej. <code>ProductRepository.java</code>, <code>SaleRepository.java</code>).<br>
+            <strong>¿Qué hace?</strong> Hereda de <code>JpaRepository</code> de Spring Data JPA. Permite buscar, guardar, actualizar o eliminar registros en la base de datos utilizando métodos Java limpios (como <code>save()</code> o <code>findById()</code>) sin necesidad de escribir extensas consultas SQL manuales repetitivas.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">5. EL MODELO / ENTIDAD (Entity)</div>
+        <p>
+            <strong>¿Qué es?</strong> Son las clases Java que representan directamente a las tablas físicas de la base de datos.<br>
+            <strong>¿Dónde está en el código?</strong> En el paquete <code>com.proyectoexamen.backend.entity</code> (ej. <code>Product.java</code>, <code>Sale.java</code>, <code>Category.java</code>).<br>
+            <strong>¿Qué hace?</strong> Con la anotación <code>@Entity</code> y <code>@Table</code>, Hibernate sabe que cada propiedad de la clase (como <code>private String name;</code>) se mapea con una columna de MySQL. Además, define relaciones como <code>@ManyToOne</code> o <code>@OneToMany</code>.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">6. LA BASE DE DATOS (MySQL en TiDB Cloud Serverless)</div>
+        <p>
+            <strong>¿Qué es?</strong> El motor relacional físico en la nube donde los datos se almacenan de forma permanente y segura bajo el motor transaccional InnoDB.<br>
+            <strong>¿Cómo se gestiona?</strong> Mediante <strong>Flyway</strong>, que corre scripts SQL evolutivos (<code>V1</code> a <code>V5</code>) creando tablas y productos automáticamente al arrancar la aplicación.
+        </p>
+    </div>
+
+    <!-- ==================== SECCIÓN 4 ==================== -->
+    <h1>SECCIÓN 4: LA ANATOMÍA DE UN CLIC</h1>
+    <h2>¿Qué sucede exactamente en el código cuando el cliente hace clic en "Confirmar Venta"?</h2>
+    <p>
+        Esta es una de las preguntas técnicas más valoradas por los docentes universitarios y técnicos: <em>"Explícame el recorrido completo de los datos desde que el usuario presiona un botón hasta que se guarda en la base de datos"</em>. Aquí tienes el paso a paso exacto:
+    </p>
+
+    <div class="step-container">
+        <div class="step-title">PASO 1: En el Navegador del Usuario (JavaScript y DOM)</div>
+        <p>
+            El usuario está en el Punto de Venta (<code>/ventas/nueva</code>), agrega al carrito 2 unidades del "Cuaderno Stanford A4" y hace clic en el botón azul <strong>"Confirmar venta"</strong>.
+            En ese instante, el script <code>app.js</code> intercepta el evento. En lugar de enviar datos desordenados, genera dinámicamente campos ocultos dentro del formulario HTML:
+        </p>
+        <span class="code-snippet">&lt;input type="hidden" name="items[0].productId" value="7"&gt;<br>&lt;input type="hidden" name="items[0].quantity" value="2"&gt;</span>
+        <p>
+            El formulario empaqueta el nombre del cliente, el DNI y la lista de artículos, y despacha una petición HTTP con método <strong>POST</strong> hacia la ruta <code>/ventas</code>.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 2: La Petición Viaja por la Red hacia el Servidor Cloud</div>
+        <p>
+            La petición viaja por internet cifrada bajo el protocolo seguro <strong>HTTPS (TLS)</strong> hacia nuestro contenedor Docker alojado en <strong>Render.com</strong>.
+            El servidor web embebido (Apache Tomcat en Spring Boot) recibe la solicitud en el puerto dinámico y la entrega al despachador central de Spring: el <code>DispatcherServlet</code>.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 3: Llegada a la Capa Controlador (SaleController.java)</div>
+        <p>
+            El <code>DispatcherServlet</code> detecta que la URL es <code>POST /ventas</code> y redirige la petición al método correspondiente en <code>SaleController.java</code>:
+        </p>
+        <span class="code-snippet">@PostMapping<br>public String create(@Valid @ModelAttribute SaleForm saleForm, BindingResult result, ... )</span>
+        <p>
+            Aquí ocurren dos cosas automáticas muy importantes:
+            1. <strong>Data Binding:</strong> Spring convierte los campos del formulario en un objeto Java llamado <code>SaleForm</code> (un DTO).
+            2. <strong>Validación:</strong> Con la anotación <code>@Valid</code>, comprueba que el DNI cumpla la expresión regular (8 u 11 dígitos numéricos). Si hay errores de formato, rechaza la operación sin tocar la base de datos.
+            Si no hay errores, el controlador invoca a la capa de servicio: <code>saleService.create(saleForm);</code>.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 4: Ejecución en la Capa de Lógica de Negocio (SaleServiceImpl.java)</div>
+        <p>
+            Aquí entra a tallar el método <code>create(SaleForm form)</code> anotado con <code>@Transactional</code>. Se ejecutan las siguientes reglas de negocio en orden estricto:
+        </p>
+        <ul>
+            <li><strong>Normalización:</strong> Con el método <code>normalize()</code> consolida productos duplicados y verifica que ninguna cantidad sea menor o igual a cero.</li>
+            <li><strong>Generación de Comprobante:</strong> Genera un código correlativo único mediante <code>generateNumber("V")</code> (ej. <code>V-20261022150856-760B</code>).</li>
+            <li><strong>Consulta y Bloqueo de Producto:</strong> Llama a <code>productRepository.findByIdForUpdate(productId)</code> para cargar los datos del producto desde MySQL.</li>
+            <li><strong>Validación de Existencias:</strong> Comprueba <code>if (product.getStock() &lt; quantity)</code>. Si no hay suficiente stock, lanza una <code>BusinessException</code> y la venta se detiene protegiendo el negocio.</li>
+            <li><strong>Descuento del Stock:</strong> Calcula el nuevo stock (<code>int updated = previous - quantity;</code>) y actualiza la entidad en memoria: <code>product.setStock(updated);</code>.</li>
+            <li><strong>Cálculo de Totales:</strong> Multiplica la cantidad por el precio de venta unitario y lo acumula en el total de la venta en Soles (S/).</li>
+            <li><strong>Registro en el Kardex:</strong> Invoca a <code>stockService.record(...)</code> para dejar constancia histórica de que salieron 2 unidades por motivo de "VENTA".</li>
+        </ul>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 5: Capa de Persistencia y Generación de SQL (Hibernate / JPA)</div>
+        <p>
+            Al finalizar el método, se ejecuta <code>saleRepository.save(sale);</code>.
+            Aquí entra en acción <strong>Hibernate</strong>, el motor ORM de Spring Data JPA. Hibernate traduce los objetos Java a instrucciones SQL nativas para MySQL:
+        </p>
+        <span class="code-snippet">INSERT INTO sales (sale_number, sale_date, customer_name, total, status, ...) VALUES (...);<br>INSERT INTO sale_items (sale_id, product_id, quantity, unit_price, subtotal) VALUES (...);<br>UPDATE products SET stock = 13, version = version + 1 WHERE id = 7 AND version = 0;<br>INSERT INTO stock_movements (product_id, movement_type, quantity, previous_stock, new_stock, ...) VALUES (...);</span>
+        <p>
+            <strong>¡Fíjate en el UPDATE de productos!</strong> Al actualizar, incrementa el campo <code>version = version + 1</code>. Ese es el <strong>bloqueo optimista</strong> que garantiza que nadie haya modificado el producto mientras nosotros realizábamos la venta.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 6: Confirmación en la Base de Datos Cloud (TiDB Cloud)</div>
+        <p>
+            Las sentencias SQL se transmiten por la red mediante el driver <code>mysql-connector-j</code> hacia nuestro cluster de <strong>TiDB Cloud en AWS</strong>.
+            El motor InnoDB ejecuta todas las inserciones y modificaciones de forma atómica y realiza el <strong>COMMIT</strong>.
+            Los datos quedan guardados de forma indestructible en la nube.
+        </p>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">PASO 7: Respuesta al Navegador (Patrón Post-Redirect-Get)</div>
+        <p>
+            Una vez guardada la venta con ID = 4, el controlador no devuelve un HTML directamente, sino una redirección HTTP 302:
+        </p>
+        <span class="code-snippet">return "redirect:/ventas/" + sale.getId();</span>
+        <p>
+            Esto implementa el estándar de la industria llamado <strong>Post-Redirect-Get (PRG)</strong>. ¿Para qué sirve? Evita que si el cliente presiona F5 o recarga la página, la venta se vuelva a registrar por duplicado.
+            El navegador solicita automáticamente <code>GET /ventas/4</code>, el servidor procesa la plantilla <code>detail.html</code> con Thymeleaf y el cajero ve en su pantalla el comprobante verde con los productos, el total cobrado y el stock actualizado.
+            <strong>¡Todo este ciclo tomó menos de 400 milisegundos!</strong>
+        </p>
+    </div>
+
+    <!-- ==================== SECCIÓN 5 ==================== -->
+    <h1>SECCIÓN 5: BANCO DE PREGUNTAS DIFÍCILES DEL DOCENTE</h1>
+    <p>
+        Los profesores suelen hacer preguntas técnicas para comprobar si los estudiantes realmente entienden el código o si solo copiaron una plantilla. Aquí tienen las respuestas exactas:
+    </p>
+
+    <div class="danger-box">
+        <strong>Pregunta 1: "¿Por qué colocaron @Transactional en los servicios y no en los controladores?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Porque los controladores pertenecen a la capa de presentación web, mientras que las transacciones pertenecen a la lógica de negocio. Una operación comercial puede involucrar guardar la venta, descontar stock de varios productos y crear registros en el Kardex. Si colocáramos la transacción en el controlador, estaríamos acoplando la tecnología HTTP con la lógica de base de datos. Al tener <code>@Transactional</code> en el Service, aseguramos que si cualquier producto falla, toda la transacción se revierte con un Rollback atómico sin importar desde dónde se invoque el servicio."
+        </p>
+    </div>
+
+    <div class="danger-box">
+        <strong>Pregunta 2: "¿Qué pasa si dos personas intentan comprar el último cuaderno al mismo tiempo?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Para solucionar eso implementamos <strong>Control de Concurrencia Optimista</strong> mediante la anotación <code>@Version</code> en la entidad <code>Product</code>. Cada vez que se descuenta el stock, Hibernate ejecuta un <code>UPDATE</code> verificando que la versión coincida con la que se leyó inicialmente. El primer cajero que confirme actualizará el registro e incrementará la versión a 1; cuando el segundo cajero intente confirmar, Hibernate detectará que la versión ya no coincide, lanzará una excepción de concurrencia y no permitirá la venta de stock inexistente, protegiendo al negocio de inventarios negativos."
+        </p>
+    </div>
+
+    <div class="danger-box">
+        <strong>Pregunta 3: "¿Por qué el controlador nunca debe llamar a un repositorio directamente?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Porque violaría el principio de responsabilidad única de la arquitectura MVC y de los principios SOLID. Si un controlador consulta directamente el repositorio, se saltaría las validaciones de negocio, los límites transaccionales y las reglas de seguridad. Toda interacción con los datos debe pasar por la capa de servicio para garantizar la coherencia de la información."
+        </p>
+    </div>
+
+    <div class="danger-box">
+        <strong>Pregunta 4: "¿Cómo funciona JasperReports y por qué no usaron una librería JavaScript de PDF como jsPDF?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Librerías de frontend como jsPDF generan el documento en el navegador del cliente basándose en capturas HTML, lo cual puede ser manipulado alterando el DOM con las herramientas de desarrollador. En cambio, <strong>JasperReports</strong> es un motor empresarial compilado del lado del servidor en Java: consulta directamente los datos auditados desde el servicio, compila la plantilla con la API <code>JasperDesign</code>, inyecta fuentes tipográficas DejaVu Sans y genera un flujo de bytes PDF inmutable y fidedigno, ideal para auditorías comerciales y contables."
+        </p>
+    </div>
+
+    <div class="danger-box">
+        <strong>Pregunta 5: "¿Por qué eligieron TiDB Cloud y no una base de datos local o PostgreSQL?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Porque TiDB Cloud es una base de datos distribuida de última generación nativa en la nube, con cumplimiento estricto de estándares ACID y 100% compatible con el protocolo y dialecto de MySQL 8. Al ser Serverless, nos permite tener alta disponibilidad 24/7 en internet sin costo mensual de infraestructura y sin depender de que nuestra computadora personal esté encendida para que el sistema funcione."
+        </p>
+    </div>
+
+    <div class="danger-box">
+        <strong>Pregunta 6: "¿Dónde está la pantalla de Login con usuarios y contraseñas?"</strong>
+        <p>
+            <strong>Respuesta perfecta:</strong> "Profesor, en esta entrega académica priorizamos el núcleo transaccional del negocio: control estricto de existencias, punto de venta reactivo, trazabilidad tipo Kardex, generación de reportes con JasperReports y despliegue continuo en la nube con Docker. La separación funcional entre los perfiles de Administrador y Vendedor ya está establecida a nivel de arquitectura, y la integración de <strong>Spring Security con tokens JWT y encriptación BCrypt</strong> es la primera línea de escalabilidad para la siguiente fase."
+        </p>
+    </div>
+
+    <!-- ==================== SECCIÓN 6 ==================== -->
+    <h1>SECCIÓN 6: CONSEJOS CLAVE PARA EL DÍA DE LA EXPOSICIÓN</h1>
+    <ul>
+        <li><strong>El calentamiento del servidor:</strong> Entra al link <code>https://proyecto-examen.onrender.com/</code> unos 2 o 3 minutos antes de que empiece la exposición para que el servidor de Render se active y responda al instante en la demo en vivo.</li>
+        <li><strong>Reparto equitativo del tiempo:</strong> Tienen 7 diapositivas y 4 integrantes. Cada integrante debe exponer entre 1 y 2 diapositivas con voz clara y mirando al docente.</li>
+        <li><strong>La prueba de fuego en vivo:</strong> En la Diapositiva 5 o 7, cambien a la ventana del navegador con <code>Alt + Tab</code>. Registren una venta en vivo de un cuaderno, muestren cómo el stock disminuye en el catálogo y descarguen el PDF de inventario para que el docente vea que no es una simulación estática, sino un software real en producción.</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 20pt; font-weight: bold; color: #0f766e;">
+        ¡Muchos éxitos en la sustentación del proyecto! Trabajo en equipo garantizado para la máxima calificación.
+    </p>
+
+</body>
+</html>
