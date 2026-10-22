@@ -5,9 +5,12 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Entorno de ejecución ligero con JRE 21
-FROM eclipse-temurin:21-jre-alpine
+# Etapa 2: Entorno con JDK 21 y fuentes para JasperReports
+FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
+
+# Instalar fuentes y utilidades graficas para reportes PDF de JasperReports
+RUN apk add --no-cache fontconfig ttf-dejavu
 
 RUN mkdir -p uploads/products
 
@@ -16,4 +19,4 @@ COPY --from=build /app/target/*.jar app.jar
 ENV PORT=8080
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "java -XX:+UseSerialGC -Xmx350m -Xss512k -Dserver.port=${PORT:-8080} -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "java -XX:+UseSerialGC -Xmx350m -Xss512k -Djava.awt.headless=true -Dserver.port=${PORT:-8080} -jar app.jar"]
