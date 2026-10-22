@@ -9,7 +9,7 @@
 
 **Librería Vico** es una aplicación web integral desarrollada para automatizar y optimizar la administración de una librería y papelería comercial. Resuelve los problemas típicos del registro manual: descuadres de caja, falta de control en el stock, pérdidas por productos agotados y lentitud al atender.
 
-### Puntos clave para sustentar:
+### Puntos clave :
 1. **Control de Stock en Tiempo Real:** Cada venta descuenta automáticamente la cantidad vendida del inventario, impidiendo ventas de productos sin stock disponible.
 2. **Alertas de Stock Mínimo:** El sistema calcula y resalta visualmente los productos próximos a agotarse para anticipar compras de reposición.
 3. **Flujo de Compras y Proveedores:** Permite abastecer el inventario, asociar compras a proveedores formales y registrar costos unitarios.
