@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe Final - Librería Vico</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        @page {
+            size: A4;
+            margin: 20mm 18mm 20mm 18mm;
+            @bottom-right {
+                content: counter(page);
+                font-family: 'Inter', sans-serif;
+                font-size: 8pt;
+                color: #64748b;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #ffffff;
+        }
+
+        /* --- PORTADA --- */
+        .cover-page {
+            height: 250mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            padding: 15mm 0;
+            border-top: 6px solid #0f766e;
+            border-bottom: 3px solid #0f2b48;
+        }
+
+        .cover-header {
+            text-align: center;
+        }
+
+        .institution-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #0f766e;
+            font-weight: 700;
+            font-size: 9pt;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid #bbf7d0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .institution-title {
+            font-size: 15pt;
+            font-weight: 800;
+            color: #0f2b48;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .career-title {
+            font-size: 11pt;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .cover-main {
+            text-align: center;
+            margin: 25mm 0;
+        }
+
+        .doc-type {
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #0f766e;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-size: 24pt;
+            font-weight: 800;
+            color: #0f2b48;
+            line-height: 1.25;
+            margin-bottom: 15px;
+        }
+
+        .project-subtitle {
+            font-size: 13pt;
+            color: #475569;
+            font-weight: 500;
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        .cover-chips {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 8pt;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .cover-footer {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+            font-size: 9pt;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #0f2b48;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .meta-item span, .meta-item a {
+            color: #334155;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .meta-item a {
+            color: #0f766e;
+            font-weight: 600;
+        }
+
+        /* --- CONTENIDO GENERAL --- */
+        .page-break {
+            page-break-before: always;
+        }
+
+        h1, h2, h3, h4 {
+            color: #0f2b48;
+            font-weight: 700;
+            page-break-after: avoid;
+        }
+
+        h1 {
+            font-size: 16pt;
+            border-bottom: 2px solid #0f766e;
+            padding-bottom: 6px;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h1 .num {
+            background: #0f2b48;
+            color: #ffffff;
+            font-size: 10pt;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-size: 12.5pt;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            color: #134e4a;
+        }
+
+        h3 {
+            font-size: 10.5pt;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            color: #0f2b48;
+        }
+
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        /* --- CAJAS DESTACADAS Y ALERTAS --- */
+        .callout {
+            background: #f0fdf4;
+            border-left: 4px solid #0f766e;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+            break-inside: avoid;
+        }
+
+        .callout.info {
+            background: #eff6ff;
+            border-left-color: #2563eb;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: #0f2b48;
+            font-size: 9.5pt;
+            margin-bottom: 4px;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            font-size: 9pt;
+            color: #334155;
+        }
+
+        /* --- TABLAS ESTILIZADAS --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 8.5pt;
+            break-inside: avoid;
+        }
+
+        table thead tr {
+            background: #0f2b48;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        table th {
+            padding: 8px 10px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        table tbody tr:hover {
+            background: #f1f5f9;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 8pt;
+        }
+
+        /* --- DIAGRAMAS Y CAJAS ARQUITECTÓNICAS --- */
+        .architecture-flow {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 14px;
+            margin: 16px 0;
+            break-inside: avoid;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            background: #ffffff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-badge {
+            background: #0f766e;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 8pt;
+            padding: 3px 8px;
+            border-radius: 4px;
+            min-width: 90px;
+            text-align: center;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .flow-content strong {
+            color: #0f2b48;
+            font-size: 9pt;
+            display: block;
+        }
+
+        .flow-content p {
+            font-size: 8.5pt;
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+        /* --- MÓDULOS EN GRID --- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 14px 0;
+            break-inside: avoid;
+        }
+
+        .module-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 3px solid #0f766e;
+            border-radius: 8px;
+            padding: 12px 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            break-inside: avoid;
+        }
+
+        .module-card h4 {
+            font-size: 9.5pt;
+            color: #0f2b48;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .module-route {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5pt;
+            color: #0f766e;
+            background: #f0fdf4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .module-card p {
+            font-size: 8.5pt;
+            color: #475569;
+            margin-bottom: 0;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            font-size: 9pt;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 8pt;
+            color: #94a3b8;
+            margin-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== PORTADA ==================== -->
+    <div class="cover-page">
+        <div class="cover-header">
+            <div class="institution-badge">Escuela de Educación Superior</div>
+            <div class="institution-title">La Pontificia</div>
+            <div class="career-title">Carrera Profesional de Desarrollo de Software y Sistemas</div>
+        </div>
+
+        <div class="cover-main">
+            <div class="doc-type">Informe Técnico Profesional de Proyecto Final</div>
+            <h1 class="project-title" style="border: none; margin: 0 0 15px 0;">SISTEMA WEB DE GESTIÓN COMERCIAL, INVENTARIOS Y FACTURACIÓN</h1>
+            <div class="project-subtitle">"Librería Vico" – Solución Integral en la Nube con Java 21, Spring Boot y MySQL</div>
+            <div class="cover-chips">
+                <span class="chip">Java 21 LTS</span>
+                <span class="chip">Spring Boot 4.x</span>
+                <span class="chip">Spring Data JPA</span>
+                <span class="chip">TiDB Cloud (MySQL 8)</span>
+                <span class="chip">JasperReports 7</span>
+                <span class="chip">Docker Multi-Stage</span>
+                <span class="chip">Render Cloud PaaS</span>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <strong>Estudiante / Desarrollador:</strong>
+                    <span>Teddy Camasca de la Cruz</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Periodo Académico:</strong>
+                    <span>2026 – Ayacucho, Perú</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Demostración en Vivo (Producción):</strong>
+                    <a href="https://proyecto-examen.onrender.com/" target="_blank">https://proyecto-examen.onrender.com/</a>
+                </div>
+                <div class="meta-item">
+                    <strong>Repositorio GitHub:</strong>
+                    <a href="https://github.com/teddycam98/proyecto-examen" target="_blank">github.com/teddycam98/proyecto-examen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== RESUMEN EJECUTIVO ==================== -->
+    <div class="callout">
+        <div class="callout-title">RESUMEN EJECUTIVO (ABSTRACT)</div>
+        <p>
+            El presente informe documenta el desarrollo y puesta en producción del <strong>Sistema Web de Gestión Comercial y Control de Inventarios para "Librería Vico"</strong>. El proyecto resuelve de forma definitiva los problemas críticos de administración manual en negocios minoristas de útiles y papelería: descuadres de caja, quiebres imprevistos de stock, cálculos lentos en mostrador y falta de reportes financieros confiables.
+            Desarrollado bajo una arquitectura por capas <strong>MVC</strong> con <strong>Java 21</strong> y <strong>Spring Boot</strong>, implementa persistencia transaccional con <strong>Spring Data JPA</strong> sobre una base de datos <strong>MySQL 8 distribuida (TiDB Cloud Serverless)</strong>, interfaces web reactivas con <strong>Thymeleaf / Bootstrap 5</strong> y exportación formal en PDF con <strong>JasperReports 7</strong>. Todo el sistema está contenerizado mediante <strong>Docker</strong> y desplegado 24/7 en la nube en <strong>Render PaaS</strong> con certificado SSL activo a costo cero.
+        </p>
+    </div>
+
+    <!-- ==================== CAPÍTULO 1 ==================== -->
+    <h1><span class="num">1</span> Contexto del Negocio y Problemática</h1>
+    <p>
+        <strong>Librería Vico</strong> es una microempresa peruana orientada a la venta de artículos escolares, útiles de oficina, manualidades y papelería general. Su catálogo abarca más de 18 familias de productos con marcas representativas como Stanford, Faber-Castell, Artesco y Vinifan.
+    </p>
+    
+    <h2>1.1. Diagnóstico del Proceso Manual (El "Antes")</h2>
+    <p>Antes de la adopción del sistema informático, la librería enfrentaba cuatro graves deficiencias:</p>
+    <ul>
+        <li><strong>Ventas a ciegas sin verificación de existencias:</strong> El vendedor ofrecía productos que ya no estaban disponibles físicamente en estantes, generando malestar y demoras con los clientes.</li>
+        <li><strong>Falta de alertas de reposición:</strong> No existía visibilidad de qué productos estaban próximos a agotarse antes del inicio de campañas escolares de alta demanda.</li>
+        <li><strong>Errores de cobro y cálculo de márgenes:</strong> El cálculo manual propiciaba errores al redondear precios o aplicar descuentos, afectando directamente la rentabilidad del negocio.</li>
+        <li><strong>Carencia de trazabilidad (Kardex):</strong> Cuando faltaban artículos, era imposible determinar si fue por merma, rotura en traslado o errores en el conteo.</li>
+    </ul>
+
+    <h2>1.2. Objetivos del Software</h2>
+    <ul>
+        <li><strong>Automatización del Punto de Venta (POS):</strong> Agilizar el cobro y descontar el stock en tiempo real mediante transacciones atómicas.</li>
+        <li><strong>Control de Concurrencia y Transaccionalidad:</strong> Proteger el inventario frente a ventas simultáneas con bloqueo optimista (<code>@Version</code>).</li>
+        <li><strong>Gestión de Proveedores y Abastecimiento:</strong> Registrar compras y recalcular costos y existencias de forma transparente.</li>
+        <li><strong>Reportes Ejecutivos:</strong> Diseñar y emitir reportes en PDF profesionales con JasperReports para inventario valorizado y ventas diarias.</li>
+    </ul>
+
+    <!-- ==================== CAPÍTULO 2 ==================== -->
+    <div class="page-break"></div>
+    <h1><span class="num">2</span> Stack Tecnológico y Justificación Técnica</h1>
+    <p>
+        Cada componente tecnológico fue seleccionado estratégicamente para asegurar alta disponibilidad, bajo consumo de memoria y soporte industrial a largo plazo:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 22%;">Tecnología</th>
+                <th style="width: 15%;">Versión</th>
+                <th style="width: 63%;">Justificación Técnica y Rol en el Proyecto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="tech-badge">Java (LTS)</span></td>
+                <td>Java 21</td>
+                <td>Versión oficial de soporte extendido. Ofrece compilación tipada estricta, mejoras drásticas en recolección de basura (*Garbage Collection*) y soporte nativo para hilos virtuales y concurrencia.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Spring Boot</span></td>
+                <td>4.x / 3.x</td>
+                <td>Ecosistema estándar de desarrollo empresarial. Facilita la Inversión de Control (IoC), Inyección de Dependencias (DI) e integración nativa de capas web, seguridad y transacciones.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Spring Data JPA</span></td>
+                <td>Hibernate 7</td>
+                <td>Abstracción de acceso a datos mediante repositorios tipados. Mapea clases Java a tablas SQL sin código repetitivo y gestiona el ciclo de vida de transacciones con <code>@Transactional</code>.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">TiDB Cloud</span></td>
+                <td>MySQL 8 Serverless</td>
+                <td>Base de datos relacional distribuida nativa en la nube, 100% compatible con MySQL 8. Provee escalabilidad automática, replicación y cumplimiento de estándares ACID con costo $0.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Flyway</span></td>
+                <td>10.x</td>
+                <td>Control de versiones para base de datos. Ejecuta migraciones automáticas secuenciales (<code>V1</code> a <code>V5</code>) creando tablas y productos semilla al arrancar el contenedor en la nube.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Thymeleaf</span></td>
+                <td>3.x</td>
+                <td>Motor de plantillas Java de renderizado del lado del servidor (*Server-Side Rendering*). Produce HTML5 limpio sin fragmentar la lógica ni depender de empaquetadores frontend pesados.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Bootstrap & Icons</span></td>
+                <td>5.3 / 1.13</td>
+                <td>Framework de hojas de estilo adaptable (*Responsive Design*), garantizando que el punto de venta funcione tanto en pantallas de PC como en tabletas y celulares de los encargados.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">JasperReports</span></td>
+                <td>7.0.6</td>
+                <td>Motor líder de reportes empresariales. Genera documentos PDF con cabeceras corporativas, paginación dinámica, cálculo de totales en Soles (S/) y fuentes integradas DejaVu Sans.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Docker</span></td>
+                <td>Multi-Stage</td>
+                <td>Aísla el proceso de compilación (Maven + JDK 21) del runtime de producción (Alpine Linux ligero con utilidades tipográficas y fuentes), optimizando el uso de memoria a menos de 380 MB.</td>
+            </tr>
+            <tr>
+                <td><span class="tech-badge">Render.com</span></td>
+                <td>Web Service</td>
+                <td>PaaS en la nube conectado por integración continua (CI/CD) a GitHub. Provee servidor web automatizado, certificado SSL (HTTPS) y enlace público permanente.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== CAPÍTULO 3 ==================== -->
+    <h1><span class="num">3</span> Arquitectura del Software (Flujo MVC)</h1>
+    <p>
+        El sistema sigue una arquitectura estricta en capas desacopladas, lo que garantiza mantenimiento modular y previene la mezcla de lógica visual con acceso a datos:
+    </p>
+
+    <div class="architecture-flow">
+        <div class="flow-step">
+            <span class="flow-badge">1. VISTA</span>
+            <div class="flow-content">
+                <strong>Interfaz de Usuario (Thymeleaf + JavaScript)</strong>
+                <p>Captura las interacciones del usuario en mostrador, gestiona el carrito reactivo y despacha solicitudes HTTP seguras (POST/GET).</p>
+            </div>
+        </div>
+        <div class="flow-step">
+            <span class="flow-badge">2. CONTROL</span>
+            <div class="flow-content">
+                <strong>Controlador Web (@Controller / ProductController, SaleController)</strong>
+                <p>Valida los parámetros de entrada y formularios DTO. Nunca invoca consultas de base de datos directamente.</p>
+            </div>
+        </div>
+        <div class="flow-step">
+            <span class="flow-badge">3. SERVICIO</span>
+            <div class="flow-content">
+                <strong>Lógica de Negocio y Transacciones (@Service / SaleServiceImpl, ProductServiceImpl)</strong>
+                <p>Aplica las reglas comerciales: valida existencias, comprueba precios de costo vs venta, actualiza el Kardex y gestiona el <code>@Transactional</code>.</p>
+            </div>
+        </div>
+        <div class="flow-step">
+            <span class="flow-badge">4. DATOS</span>
+            <div class="flow-content">
+                <strong>Capa de Persistencia (@Repository / JpaRepository)</strong>
+                <p>Genera consultas optimizadas a MySQL y gestiona el control de versiones con bloqueo optimista (<code>@Version</code>).</p>
+            </div>
+        </div>
+        <div class="flow-step">
+            <span class="flow-badge">5. MOTOR BD</span>
+            <div class="flow-content">
+                <strong>Base de Datos Relacional (TiDB Cloud MySQL 8)</strong>
+                <p>Almacena la información de forma persistente con motor InnoDB, claves foráneas, restricciones UNIQUE y transacciones ACID.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CAPÍTULO 4 ==================== -->
+    <div class="page-break"></div>
+    <h1><span class="num">4</span> Funcionamiento y Módulos del Sistema</h1>
+    <p>
+        La solución digital está organizada en 6 módulos operativos independientes y totalmente sincronizados:
+    </p>
+
+    <div class="modules-grid">
+        <div class="module-card">
+            <h4>Panel de Control <span class="module-route">/</span></h4>
+            <p>Muestra el resumen ejecutivo del día: valor total del inventario valorizado en Soles (S/), total de ingresos por ventas y listado en rojo de productos en stock crítico.</p>
+        </div>
+        <div class="module-card">
+            <h4>Catálogo de Productos <span class="module-route">/productos</span></h4>
+            <p>Listado dinámico con buscador de útiles escolares, costos de compra, precios de venta, categoría, fotos de productos y control de estado (activo/inactivo).</p>
+        </div>
+        <div class="module-card">
+            <h4>Punto de Venta (POS) <span class="module-route">/ventas/nueva</span></h4>
+            <p>Pantalla de atención rápida con botones de adición directa, carrito reactivo con cálculo automático de totales e impedimento de venta si no hay stock físico.</p>
+        </div>
+        <div class="module-card">
+            <h4>Compras y Proveedores <span class="module-route">/compras</span></h4>
+            <p>Registro de órdenes de abastecimiento con proveedores formales (con RUC). Actualiza automáticamente el stock y registra el costo de adquisición.</p>
+        </div>
+        <div class="module-card">
+            <h4>Kardex de Movimientos <span class="module-route">/inventario/movimientos</span></h4>
+            <p>Trazabilidad histórica inmutable de cada entrada, salida, venta o ajuste manual con fotografía de existencias: anterior, variada y resultante.</p>
+        </div>
+        <div class="module-card">
+            <h4>Reportes Ejecutivos PDF <span class="module-route">/reportes</span></h4>
+            <p>Generación y descarga con un clic de documentos en PDF oficiales con JasperReports: Inventario Valorizado completo y Reporte de Ventas por Período.</p>
+        </div>
+    </div>
+
+    <!-- ==================== CAPÍTULO 5 ==================== -->
+    <h1><span class="num">5</span> Matriz Comparativa: Problemas Resueltos</h1>
+    <p>Impacto cuantitativo y cualitativo de la implementación del sistema en Librería Vico:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Dimensión Comercial</th>
+                <th style="width: 37%;">Antes (Gestión Manual / Cuaderno)</th>
+                <th style="width: 38%;">Después (Con Librería Vico Web)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Exactitud de Stock</strong></td>
+                <td>Conteo visual aproximado; constantes quejas por ofrecer productos ya agotados.</td>
+                <td>Descuento exacto e instantáneo con cada venta. Bloqueo en 0 existencias.</td>
+            </tr>
+            <tr>
+                <td><strong>Tiempo de Cobro</strong></td>
+                <td>Cálculo con calculadora manual o celular; 3 a 5 minutos por cliente.</td>
+                <td>Menos de 30 segundos con el carrito reactivo del punto de venta.</td>
+            </tr>
+            <tr>
+                <td><strong>Prevención de Quiebres</strong></td>
+                <td>La librería se percataba de la falta de cuadernos en plena campaña escolar.</td>
+                <td>Alertas automáticas en el Dashboard para productos con stock menor al mínimo.</td>
+            </tr>
+            <tr>
+                <td><strong>Seguridad de Datos</strong></td>
+                <td>Cuadernos físicos expuestos a manchas, extravío o deterioro.</td>
+                <td>Base de datos en la nube (TiDB) con backups automáticos y cifrado SSL.</td>
+            </tr>
+            <tr>
+                <td><strong>Toma de Decisiones</strong></td>
+                <td>Desconocimiento del capital total inmovilizado en mercadería.</td>
+                <td>Reportes en PDF con JasperReports que calculan la valorización al centavo en Soles.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== CAPÍTULO 6 ==================== -->
+    <h1><span class="num">6</span> Conclusiones y Recomendaciones</h1>
+    
+    <h2>6.1. Conclusiones</h2>
+    <ol>
+        <li><strong>Despliegue Cloud Exitoso:</strong> Se logró poner en funcionamiento un sistema empresarial complejo (Spring Boot + MySQL) en internet de forma permanente, segura (HTTPS) y a costo cero utilizando Docker, TiDB Cloud y Render.</li>
+        <li><strong>Integridad Transaccional:</strong> La aplicación del patrón MVC combinado con control de concurrencia optimista (<code>@Version</code>) garantiza que los datos de stock y ventas nunca presenten anomalías ni descuadres.</li>
+        <li><strong>Valor Práctico y Profesional:</strong> La integración de reportes oficiales con JasperReports eleva el estándar del proyecto, proveyendo documentos formales listos para fiscalización y contabilidad.</li>
+    </ol>
+
+    <h2>6.2. Recomendaciones de Escalabilidad</h2>
+    <ol>
+        <li><strong>Integración con Facturación Electrónica (SUNAT):</strong> Incorporar un conector web para emitir boletas y facturas con firma digital bajo el estándar XML UBL 2.1 de SUNAT.</li>
+        <li><strong>Lectores de Código de Barras:</strong> Implementar soporte para escáneres de mano USB/Bluetooth en el buscador del POS para acelerar la atención masiva.</li>
+        <li><strong>Seguridad por Perfiles (Spring Security):</strong> Crear perfiles diferenciados para cajeros (solo ventas) y administradores (ajustes de costos y compras).</li>
+    </ol>
+
+    <div class="footer-note">
+        Sistema Web Librería Vico – Desarrollado por Teddy Camasca de la Cruz | Carrera de Desarrollo de Software y Sistemas (2026)
+    </div>
+
+</body>
+</html>
