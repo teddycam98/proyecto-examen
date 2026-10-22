@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Diapositivas - Librería Vico</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+        @page {
+            size: 297mm 167.06mm; /* 16:9 Widescreen exacto */
+            margin: 0;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #090e17;
+            color: #f1f5f9;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* --- CONTENEDOR DE DIAPOSITIVA (SLIDE) --- */
+        .slide {
+            width: 297mm;
+            height: 167.06mm;
+            max-height: 167.06mm;
+            page-break-after: always;
+            position: relative;
+            padding: 12mm 16mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            background: radial-gradient(circle at 85% 15%, #132338 0%, #090e17 70%);
+        }
+
+        /* Elementos decorativos de fondo */
+        .glow-sphere {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .glow-sphere-blue {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        /* Encabezado común de Diapositiva */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            z-index: 2;
+        }
+
+        .slide-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .slide-title {
+            font-size: 19pt;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .slide-title span {
+            color: #10b981;
+        }
+
+        .slide-brand {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Pie común de Diapositiva */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 6px;
+            font-size: 7.5pt;
+            color: #64748b;
+            z-index: 2;
+        }
+
+        .slide-footer .team-names {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .slide-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* --- SLIDE 1: PORTADA --- */
+        .cover-content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+            color: #000000;
+            font-size: 8pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .cover-title {
+            font-size: 30pt;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .cover-title span {
+            background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cover-desc {
+            font-size: 11pt;
+            color: #94a3b8;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .tech-pill-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 8pt;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .cover-right-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        .cover-team-title {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .member-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            padding: 7px 10px;
+            margin-bottom: 6px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .member-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .member-item .avatar {
+            width: 22px;
+            height: 22px;
+            background: #10b981;
+            color: #064e3b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7pt;
+            font-weight: 800;
+        }
+
+        /* --- SLIDE 2: PROBLEMA VS SOLUCIÓN --- */
+        .comparison-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .comp-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comp-card.problem {
+            border-top: 4px solid #ef4444;
+        }
+
+        .comp-card.solution {
+            border-top: 4px solid #10b981;
+            background: rgba(6, 78, 59, 0.15);
+        }
+
+        .comp-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11pt;
+            font-weight: 800;
+        }
+
+        .comp-card.problem .comp-header { color: #f87171; }
+        .comp-card.solution .comp-header { color: #34d399; }
+
+        .comp-item {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .comp-icon {
+            font-size: 13pt;
+            line-height: 1;
+        }
+
+        .comp-text strong {
+            display: block;
+            font-size: 9pt;
+            color: #ffffff;
+            margin-bottom: 1px;
+        }
+
+        .comp-text span {
+            font-size: 8pt;
+            color: #94a3b8;
+        }
+
+        /* --- SLIDE 3: STACK TECNOLÓGICO --- */
+        .tech-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .tech-card {
+            background: rgba(30, 41, 59, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .tech-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tech-card-header h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .tech-tag {
+            font-size: 7pt;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .tech-card p {
+            font-size: 8pt;
+            color: #94a3b8;
+            line-height: 1.35;
+        }
+
+        /* --- SLIDE 4: ARQUITECTURA MVC --- */
+        .arch-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .arch-chain {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            align-items: center;
+        }
+
+        .arch-box {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .arch-box.active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .arch-box-step {
+            font-size: 7pt;
+            color: #10b981;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .arch-box h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .arch-box p {
+            font-size: 7.5pt;
+            color: #94a3b8;
+            line-height: 1.25;
+        }
+
+        .arch-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .feature-item {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 14pt;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-size: 8.5pt;
+            color: #f1f5f9;
+        }
+
+        .feature-text span {
+            font-size: 7.5pt;
+            color: #64748b;
+        }
+
+        /* --- SLIDES CON IMÁGENES / CAPTURAS --- */
+        .showcase-layout {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .showcase-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feature-bullet {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid #10b981;
+            border-radius: 0 8px 8px 0;
+            padding: 8px 12px;
+        }
+
+        .feature-bullet strong {
+            font-size: 9pt;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .feature-bullet p {
+            font-size: 8pt;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .browser-mockup {
+            background: #1e293b;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .browser-bar {
+            background: #0f172a;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .browser-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #475569;
+        }
+        .browser-dot.red { background: #ef4444; }
+        .browser-dot.yellow { background: #eab308; }
+        .browser-dot.green { background: #22c55e; }
+
+        .browser-url {
+            margin-left: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5pt;
+            color: #94a3b8;
+            flex: 1;
+        }
+
+        .browser-image {
+            width: 100%;
+            height: 90mm;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* --- SLIDE 7: CIERRE --- */
+        .closing-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .conclusions-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .conclusion-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .conclusion-num {
+            background: #10b981;
+            color: #064e3b;
+            font-weight: 800;
+            font-size: 8pt;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .live-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(56, 189, 248, 0.15) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .live-title {
+            font-size: 13pt;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .live-link-box {
+            background: #090e17;
+            border: 1px solid #10b981;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5pt;
+            color: #34d399;
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        .qa-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 8pt;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== DIAPOSITIVA 1: PORTADA ==================== -->
+    <div class="slide">
+        <div class="glow-sphere"></div>
+        <div class="glow-sphere-blue"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">🚀 Proyecto Final Integrado</span>
+            <span class="slide-brand">EES La Pontificia – Ayacucho (2026)</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="cover-content">
+                <div>
+                    <span class="cover-badge">Desarrollo Web Empresarial</span>
+                    <h1 class="cover-title">LIBRERÍA <span>VICO</span></h1>
+                    <p class="cover-desc">Sistema Web de Gestión Comercial, Control Transaccional de Inventarios y Emisión de Reportes en la Nube.</p>
+                    
+                    <div class="tech-pill-group">
+                        <span class="tech-pill">☕ Java 21 LTS</span>
+                        <span class="tech-pill">🍃 Spring Boot 4</span>
+                        <span class="tech-pill">🗄️ MySQL TiDB Cloud</span>
+                        <span class="tech-pill">📄 JasperReports 7</span>
+                        <span class="tech-pill">🐳 Docker en Render</span>
+                    </div>
+                </div>
+
+                <div class="cover-right-card">
+                    <div class="cover-team-title">👥 Equipo de Desarrollo</div>
+                    <div class="member-item">
+                        <div class="avatar">TC</div>
+                        <span>CAMASCA DE LA CRUZ, TEDY</span>
+                    </div>
+                    <div class="member-item">
+                        <div class="avatar">QC</div>
+                        <span>QUISPE CENTENO, JHAN CARLOS</span>
+                    </div>
+                    <div class="member-item">
+                        <div class="avatar">SA</div>
+                        <span>SANTIAGO ATAUCUSI, JULIO FRANCISCO</span>
+                    </div>
+                    <div class="member-item">
+                        <div class="avatar">QQ</div>
+                        <span>QUIROGA QUISPE, MARLON JOEL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Sistema Web Librería Vico</span>
+            <span>Diapositiva 1 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 2: EL PROBLEMA VS LA SOLUCIÓN ==================== -->
+    <div class="slide">
+        <div class="glow-sphere"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">🎯 Diagnóstico Comercial</span>
+            <div class="slide-title">¿Qué Problema <span>Resolvemos?</span></div>
+            <span class="slide-brand">Impacto Operativo</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="comparison-grid">
+                <!-- Problema -->
+                <div class="comp-card problem">
+                    <div class="comp-header">❌ ANTES: Registro Manual / Cuaderno</div>
+                    <div class="comp-item">
+                        <span class="comp-icon">📦</span>
+                        <div class="comp-text">
+                            <strong>Quiebres de Stock Imprevistos</strong>
+                            <span>Venta de útiles escolares que ya no existían en estantería.</span>
+                        </div>
+                    </div>
+                    <div class="comp-item">
+                        <span class="comp-icon">⏱️</span>
+                        <div class="comp-text">
+                            <strong>Cobro Lento en Mostrador</strong>
+                            <span>3 a 5 minutos por cliente calculando precios con libreta.</span>
+                        </div>
+                    </div>
+                    <div class="comp-item">
+                        <span class="comp-icon">📉</span>
+                        <div class="comp-text">
+                            <strong>Falta de Auditoría (Kardex Nulo)</strong>
+                            <span>Pérdidas y mermas sin justificación contable.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solución -->
+                <div class="comp-card solution">
+                    <div class="comp-header">✅ AHORA: Librería Vico Web</div>
+                    <div class="comp-item">
+                        <span class="comp-icon">⚡</span>
+                        <div class="comp-text">
+                            <strong>Descuento Inmediato de Existencias</strong>
+                            <span>Validación automática en tiempo real; bloqueo en 0 stock.</span>
+                        </div>
+                    </div>
+                    <div class="comp-item">
+                        <span class="comp-icon">🚀</span>
+                        <div class="comp-text">
+                            <strong>Punto de Venta Reactivo (&lt; 30 seg)</strong>
+                            <span>Carrito interactivo con cálculo automático de totales en Soles (S/).</span>
+                        </div>
+                    </div>
+                    <div class="comp-item">
+                        <span class="comp-icon">📊</span>
+                        <div class="comp-text">
+                            <strong>Kardex y Reportes PDF Oficiales</strong>
+                            <span>Trazabilidad histórica total y reportes JasperReports al centavo.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">Camasca • Quispe • Santiago • Quiroga</span>
+            <span>Diapositiva 2 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 3: STACK TECNOLÓGICO ==================== -->
+    <div class="slide">
+        <div class="glow-sphere-blue"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">🛠️ Herramientas</span>
+            <div class="slide-title">Stack Tecnológico <span>Empresarial</span></div>
+            <span class="slide-brand">Arquitectura Moderna</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>☕ Java 21 LTS</h3>
+                        <span class="tech-tag">Core Backend</span>
+                    </div>
+                    <p>Lenguaje fuertemente tipado, compilación optimizada y eficiencia de memoria para alta concurrencia.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>🍃 Spring Boot 4</h3>
+                        <span class="tech-tag">Framework Web</span>
+                    </div>
+                    <p>Inyección de dependencias (IoC), Spring MVC y límites transaccionales con <code>@Transactional</code>.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>🗄️ TiDB Cloud</h3>
+                        <span class="tech-tag">MySQL 8 Cloud</span>
+                    </div>
+                    <p>Base de datos relacional distribuida Serverless. 100% compatible con MySQL 8, ACID y disponible 24/7.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>📄 JasperReports 7</h3>
+                        <span class="tech-tag">Motor PDF</span>
+                    </div>
+                    <p>Compilación y generación programática de reportes corporativos en PDF con diseño A4 y fuentes integradas.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>🐳 Docker & Render</h3>
+                        <span class="tech-tag">DevOps Cloud</span>
+                    </div>
+                    <p>Contenedor Alpine ultra liviano desplegado en Render con integración continua (CI/CD) y HTTPS.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <h3>🎨 Thymeleaf & CSS</h3>
+                        <span class="tech-tag">UI / Frontend</span>
+                    </div>
+                    <p>Plantillas dinámicas del lado del servidor (SSR) combinadas con Bootstrap 5 para diseño 100% responsive.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">Camasca • Quispe • Santiago • Quiroga</span>
+            <span>Diapositiva 3 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 4: ARQUITECTURA MVC ==================== -->
+    <div class="slide">
+        <div class="glow-sphere"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">🏛️ Diseño de Software</span>
+            <div class="slide-title">Arquitectura <span>por Capas (MVC)</span></div>
+            <span class="slide-brand">Separación de Responsabilidades</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="arch-container">
+                <div class="arch-chain">
+                    <div class="arch-box">
+                        <div class="arch-box-step">Paso 1</div>
+                        <h4>Vista Web</h4>
+                        <p>Thymeleaf + JavaScript reactivo</p>
+                    </div>
+                    <div class="arch-box active">
+                        <div class="arch-box-step">Paso 2</div>
+                        <h4>Controller</h4>
+                        <p>Valida peticiones HTTP y DTOs</p>
+                    </div>
+                    <div class="arch-box active">
+                        <div class="arch-box-step">Paso 3</div>
+                        <h4>Service</h4>
+                        <p>Reglas de negocio y @Transactional</p>
+                    </div>
+                    <div class="arch-box active">
+                        <div class="arch-box-step">Paso 4</div>
+                        <h4>Repository</h4>
+                        <p>Spring Data JPA & Hibernate</p>
+                    </div>
+                    <div class="arch-box">
+                        <div class="arch-box-step">Paso 5</div>
+                        <h4>Base de Datos</h4>
+                        <p>TiDB Cloud MySQL 8</p>
+                    </div>
+                </div>
+
+                <div class="arch-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span>
+                        <div class="feature-text">
+                            <strong>Bloqueo Optimista (@Version)</strong>
+                            <span>Evita ventas simultáneas de stock inexistente.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔄</span>
+                        <div class="feature-text">
+                            <strong>Transacciones Atómicas</strong>
+                            <span>Rollback total si ocurre cualquier error en el pedido.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛡️</span>
+                        <div class="feature-text">
+                            <strong>Manejo Global (@ControllerAdvice)</strong>
+                            <span>Intercepta errores y previene caídas inesperadas.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">Camasca • Quispe • Santiago • Quiroga</span>
+            <span>Diapositiva 4 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 5: DEMO POS & CATÁLOGO ==================== -->
+    <div class="slide">
+        <div class="glow-sphere-blue"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">💻 Demostración en Vivo</span>
+            <div class="slide-title">Punto de Venta <span>(POS) y Catálogo</span></div>
+            <span class="slide-brand">Operación en Mostrador</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="showcase-layout">
+                <div class="showcase-text">
+                    <div class="feature-bullet">
+                        <strong>🛒 Carrito Reactivo Instantáneo</strong>
+                        <p>Permite añadir productos con un clic, ajustar cantidades y calcular subtotales en Soles en tiempo real.</p>
+                    </div>
+                    <div class="feature-bullet">
+                        <strong>🇵🇪 Catálogo de Útiles Escolares Peruanos</strong>
+                        <p>18 familias de productos precargados: Cuadernos Stanford, Colores Faber-Castell, Artesco, Vinifan.</p>
+                    </div>
+                    <div class="feature-bullet">
+                        <strong>🚫 Bloqueo Estricto de Existencias</strong>
+                        <p>Imposible vender productos con stock en 0. Alerta visual inmediata.</p>
+                    </div>
+                </div>
+
+                <div class="browser-mockup">
+                    <div class="browser-bar">
+                        <div class="browser-dot red"></div>
+                        <div class="browser-dot yellow"></div>
+                        <div class="browser-dot green"></div>
+                        <div class="browser-url">https://proyecto-examen.onrender.com/ventas/nueva</div>
+                    </div>
+                    <img class="browser-image" src="screenshots/pos.png" alt="POS Librería Vico">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">Camasca • Quispe • Santiago • Quiroga</span>
+            <span>Diapositiva 5 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 6: DASHBOARD & REPORTES PDF ==================== -->
+    <div class="slide">
+        <div class="glow-sphere"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">📊 Métricas y Reportería</span>
+            <div class="slide-title">Dashboard y <span>Reportes en PDF</span></div>
+            <span class="slide-brand">Control Financiero</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="showcase-layout">
+                <div class="browser-mockup">
+                    <div class="browser-bar">
+                        <div class="browser-dot red"></div>
+                        <div class="browser-dot yellow"></div>
+                        <div class="browser-dot green"></div>
+                        <div class="browser-url">https://proyecto-examen.onrender.com/</div>
+                    </div>
+                    <img class="browser-image" src="screenshots/dashboard.png" alt="Dashboard Librería Vico">
+                </div>
+
+                <div class="showcase-text">
+                    <div class="feature-bullet">
+                        <strong>📈 Valorización de Inventario en Soles</strong>
+                        <p>Muestra el capital total invertido en almacén a costo de compra.</p>
+                    </div>
+                    <div class="feature-bullet">
+                        <strong>⚠️ Alertas Visuales de Stock Mínimo</strong>
+                        <p>Filtro en rojo para anticipar compras antes del quiebre de stock.</p>
+                    </div>
+                    <div class="feature-bullet">
+                        <strong>📄 JasperReports PDF al Instante</strong>
+                        <p>Descarga de reportes oficiales de Inventario y Ventas por período listos para imprimir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">Camasca • Quispe • Santiago • Quiroga</span>
+            <span>Diapositiva 6 / 7</span>
+        </div>
+    </div>
+
+    <!-- ==================== DIAPOSITIVA 7: CONCLUSIÓN Y LINK EN VIVO ==================== -->
+    <div class="slide">
+        <div class="glow-sphere"></div>
+        <div class="glow-sphere-blue"></div>
+
+        <div class="slide-header">
+            <span class="slide-tag">🏆 Cierre del Proyecto</span>
+            <div class="slide-title">Conclusiones y <span>Acceso en Vivo</span></div>
+            <span class="slide-brand">Sustentación Final</span>
+        </div>
+
+        <div class="slide-body">
+            <div class="closing-container">
+                <div class="conclusions-box">
+                    <div class="conclusion-card">
+                        <div class="conclusion-num">1</div>
+                        <div>
+                            <strong style="color: #ffffff; font-size: 8.5pt;">Solución 100% Funcional y en Producción</strong>
+                            <p style="font-size: 7.5pt; color: #94a3b8; margin: 0;">Sistema desplegado en la nube con Docker y base de datos distribuida sin costo mensual.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-card">
+                        <div class="conclusion-num">2</div>
+                        <div>
+                            <strong style="color: #ffffff; font-size: 8.5pt;">Integridad Transaccional Garantizada</strong>
+                            <p style="font-size: 7.5pt; color: #94a3b8; margin: 0;">Cero descuadres de stock gracias al control de concurrencia optimista en Java 21.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-card">
+                        <div class="conclusion-num">3</div>
+                        <div>
+                            <strong style="color: #ffffff; font-size: 8.5pt;">Arquitectura Limpia y Escalable</strong>
+                            <p style="font-size: 7.5pt; color: #94a3b8; margin: 0;">Código desacoplado bajo el patrón MVC, listo para integrar facturación electrónica SUNAT.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="live-card">
+                    <div class="live-title">🌐 ¡Pruébalo en Vivo Ahora Mismo!</div>
+                    <div class="live-link-box">https://proyecto-examen.onrender.com/</div>
+                    <span class="qa-badge">💬 Sesión de Preguntas y Respuestas (Q&A)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span class="team-names">¡Muchas Gracias! • EES La Pontificia</span>
+            <span>Diapositiva 7 / 7</span>
+        </div>
+    </div>
+
+</body>
+</html>
