@@ -123,5 +123,10 @@ Abrir en el navegador:
 ---
 
 ## 👤 Información del Proyecto
-* **Autor:** Teddy Camasca
+* **Autor:**
+* Teddy Camasca
+* QUISPE CENTENO, JHAN CARLOS
+* SANTIAGO ATAUCUSI, JULIO FRANCISCO
+* QUIROGA QUISPE, MARLON JOEL
+
 * **Repositorio Oficial:** [https://github.com/teddycam98/proyecto-examen](https://github.com/teddycam98/proyecto-examen)
